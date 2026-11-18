@@ -1,0 +1,78 @@
+Warm-up rows dropped (NaN features): 20 days, of which 4 expiries (S1 expiries 371 -> 367)
+S1 days used: 1728  (expiry days: 367, non-expiry: 1361)
+Features: ['rv20', 'r5', 'prev_absret', 'rv_first3', 'abs_trend', 'strike50', 'gap', 'event']
+Zero-return floor: 0.0001
+
+Joined expiry type from outputs/expiry_features.parquet (date col 'Expiry date', type col 'expiry_type'); expiry rows without a type: 0
+======================================================================
+PART A - report-style split (train non-expiry <= 2022, test non-expiry >= 2023)
+======================================================================
+[log_r4] ridge in-sample R2  0.130 | OOS R2  0.026 | naive-mean OOS -0.156 (n_train 668, n_test 693)
+[log_r4] gbr   in-sample R2  0.255 | OOS R2  0.061 | naive-mean OOS -0.156 (n_train 668, n_test 693)
+[log_range4] ridge in-sample R2  0.364 | OOS R2 -0.075 | naive-mean OOS -0.735 (n_train 668, n_test 693)
+[log_range4] gbr   in-sample R2  0.512 | OOS R2  0.105 | naive-mean OOS -0.735 (n_train 668, n_test 693)
+Reference: the draft report quotes 15.2% in-sample / 5.5% out-of-sample (different feature set, expiry indicators included, so compare orders of magnitude, not decimals).
+
+======================================================================
+PART B - walk-forward residuals (train on non-expiry days of earlier years only)
+======================================================================
+
+[log_r4] walk-forward OOS R2 on non-expiry days 2022+: 0.070
+  Expiry vs non-expiry residual, walk-forward (2022+): n_exp=239 n_non=888  expiry mean=+0.292  non-expiry mean=+0.010  DIFFERENCE=+0.282 (~+33% in the final-bar measure)  Welch t=4.35 (p=0.0000)  Mann-Whitney p=0.0000  [naive test vs 0: t=5.07, biased if non-expiry mean != 0]
+      Monthly  n= 55  difference vs non-expiry=+0.627 (~+87%)  share above non-expiry mean=0.78  Welch t=4.89 (p=0.0000)
+      Weekly   n=184  difference vs non-expiry=+0.179 (~+20%)  share above non-expiry mean=0.63  Welch t=2.57 (p=0.0107)
+  Expiry vs non-expiry residual, leave-one-year-out (all years): n_exp=367 n_non=1361  expiry mean=+0.188  non-expiry mean=+0.018  DIFFERENCE=+0.171 (~+19% in the final-bar measure)  Welch t=3.15 (p=0.0017)  Mann-Whitney p=0.0013  [naive test vs 0: t=3.90, biased if non-expiry mean != 0]
+      Monthly  n= 85  difference vs non-expiry=+0.435 (~+55%)  share above non-expiry mean=0.73  Welch t=3.83 (p=0.0002)
+      Weekly   n=282  difference vs non-expiry=+0.091 (~+9%)  share above non-expiry mean=0.60  Welch t=1.57 (p=0.1167)
+
+[log_range4] walk-forward OOS R2 on non-expiry days 2022+: 0.229
+  Expiry vs non-expiry residual, walk-forward (2022+): n_exp=239 n_non=888  expiry mean=+0.032  non-expiry mean=-0.103  DIFFERENCE=+0.135 (~+14% in the final-bar measure)  Welch t=4.40 (p=0.0000)  Mann-Whitney p=0.0000  [naive test vs 0: t=1.14, biased if non-expiry mean != 0]
+      Monthly  n= 55  difference vs non-expiry=+0.439 (~+55%)  share above non-expiry mean=0.82  Welch t=7.51 (p=0.0000)
+      Weekly   n=184  difference vs non-expiry=+0.044 (~+4%)  share above non-expiry mean=0.54  Welch t=1.39 (p=0.1649)
+  Expiry vs non-expiry residual, leave-one-year-out (all years): n_exp=367 n_non=1361  expiry mean=+0.107  non-expiry mean=+0.014  DIFFERENCE=+0.093 (~+10% in the final-bar measure)  Welch t=3.95 (p=0.0001)  Mann-Whitney p=0.0001  [naive test vs 0: t=5.05, biased if non-expiry mean != 0]
+      Monthly  n= 85  difference vs non-expiry=+0.329 (~+39%)  share above non-expiry mean=0.74  Welch t=7.29 (p=0.0000)
+      Weekly   n=282  difference vs non-expiry=+0.022 (~+2%)  share above non-expiry mean=0.53  Welch t=0.88 (p=0.3793)
+
+Top 10 expiries, WALK-FORWARD residual (2022+, out-of-sample):
+      date expiry_type  res_wf_log_r4  z_wf_log_r4
+2025-05-08      Weekly       2.612266     2.923165
+2025-04-30     Monthly       2.116263     2.366089
+2024-05-30     Monthly       2.036548     2.276559
+2023-09-28     Monthly       1.964839     2.196021
+2024-09-12      Weekly       1.961903     2.192724
+2022-06-30     Monthly       1.756702     1.962256
+2022-02-03      Weekly       1.743083     1.946960
+2026-05-12      Weekly       1.656968     1.850241
+2023-07-27     Monthly       1.649870     1.842269
+2024-02-29     Monthly       1.626666     1.816209
+
+Top 15 expiries, RETROSPECTIVE (leave-one-year-out, uses future years; descriptive only, not walk-forward):
+      date expiry_type  res_retro_log_r4  z_retro_log_r4  res_wf_log_r4
+2025-05-08      Weekly          2.568620        2.824761       2.612266
+2024-05-30     Monthly          2.096064        2.301490       2.036548
+2025-04-30     Monthly          2.065611        2.267768       2.116263
+2023-09-28     Monthly          1.803558        1.977592       1.964839
+2022-06-30     Monthly          1.776932        1.948108       1.756702
+2021-12-16      Weekly          1.725487        1.891142            NaN
+2022-02-03      Weekly          1.721947        1.887222       1.743083
+2021-01-21      Weekly          1.703958        1.867303            NaN
+2024-09-12      Weekly          1.703184        1.866445       1.961903
+2021-05-27     Monthly          1.698318        1.861057            NaN
+2026-05-12      Weekly          1.656968        1.815269       1.656968
+2024-03-28     Monthly          1.654890        1.812968       1.617282
+2023-07-27     Monthly          1.647949        1.805282       1.649870
+2024-02-29     Monthly          1.640864        1.797436       1.626666
+2026-06-30     Monthly          1.584835        1.735394       1.584835
+Negative control 2020-03-12: residual +1.48, rank 20 of 367
+Negative control 2023-01-25: residual +0.47, rank 155 of 367
+Negative control 2024-02-01: residual -0.13, rank 250 of 367
+
+Mean |SHAP| (primary target, model fit on all non-expiry days; for explanation, not scoring):
+rv20           0.1331
+rv_first3      0.1183
+r5             0.0478
+abs_trend      0.0347
+prev_absret    0.0216
+strike50       0.0164
+gap            0.0154
+event          0.0000

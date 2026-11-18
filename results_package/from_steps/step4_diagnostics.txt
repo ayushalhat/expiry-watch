@@ -1,0 +1,100 @@
+Listed events detected ON an expiry day: 3 (expected 3: 12 Mar 2020, 25 Jan 2023, 1 Feb 2024)
+
+==========================================================================
+MIRS-lite - WALK-FORWARD  (n = 239 expiries; 2022-01-06 to 2026-07-28)
+==========================================================================
+Tier counts: {'Green': 173, 'Amber': 64, 'Orange': 2} | Red: NOT ASSIGNABLE (no cross-market evidence in spot-only data)
+Tier by expiry type:
+tier         Amber  Green  Orange
+expiry_type                      
+Monthly         15     40       0
+Weekly          49    133       2
+Tier by year:
+tier   Amber  Green  Orange
+row_0                      
+2022      20     32       0
+2023      13     39       0
+2024      18     32       2
+2025       8     45       0
+2026       5     25       0
+
+Top 12 by MIRS:
+            expiry_type regime     A     T     R   Rec  n_signals     U  news_expl  MIRS    tier  ml_consensus
+Expiry date                                                                                                   
+2024-04-18       Weekly    R03  0.94  0.95  0.77  0.00          2  0.74        0.0  0.74  Orange          0.98
+2023-11-16       Weekly    R03  0.99  0.80  0.69  0.25          1  0.73        0.0  0.73   Amber          0.98
+2024-09-12       Weekly    R04  0.97  0.96  0.50  0.00          2  0.72        0.0  0.72  Orange          0.97
+2025-05-22       Weekly    R09  0.79  0.84  0.84  0.25          0  0.71        0.0  0.71   Green          0.67
+2023-12-21       Weekly    R03  0.88  0.85  0.44  0.25          0  0.70        0.0  0.70   Green          0.21
+2022-03-24       Weekly    R02  0.82  0.71  0.50  0.50          1  0.68        0.0  0.68   Amber          0.24
+2023-07-06       Weekly    R03  0.83  0.83  0.93  0.00          1  0.68        0.0  0.68   Amber          0.98
+2026-06-23       Weekly    R12  0.91  0.83  0.75  0.00          1  0.68        0.0  0.68   Amber          0.50
+2025-05-08       Weekly    R09  0.73  1.00  0.35  0.00          1  0.67        0.0  0.67   Amber          0.98
+2024-03-28      Monthly    R03  0.95  0.88  0.28  0.00          1  0.66        0.0  0.66   Amber          0.73
+2022-11-24      Monthly    R02  0.98  0.81  0.48  0.00          1  0.66        0.0  0.66   Amber          0.42
+2024-02-08       Weekly    R03  0.97  0.79  0.58  0.00          1  0.65        0.0  0.65   Amber          0.56
+
+Negative controls (listed-event expiries; the explanation term should REDUCE them). NOTE: the discount for these three is mechanical (listed event on the day), so this shows the mechanism works, not that the discount size is validated:
+  2020-03-12: not in this set
+  2023-01-25: signals=1  U=0.33 (rank 186/239) -> news_expl=1.0 -> MIRS=0.17 (rank 235) tier=Amber
+  2024-02-01: signals=0  U=0.36 (rank 168/239) -> news_expl=1.0 -> MIRS=0.18 (rank 234) tier=Green
+
+Weight sensitivity (300 Dirichlet draws around the base weights): Spearman vs base: median 0.97, 5th pct 0.88; top-20 overlap: mean 16.9/20
+  Share of draws in which each base top-10 expiry stays in the top 20: 2024-04-18: 100%, 2023-11-16: 100%, 2024-09-12: 100%, 2025-05-22: 100%, 2023-12-21: 100%, 2022-03-24: 92%, 2023-07-06: 99%, 2026-06-23: 99%, 2025-05-08: 89%, 2024-03-28: 89%
+  LAMBDA=0.0: Spearman vs base 0.941; top-20 overlap 14/20
+  LAMBDA=0.25: Spearman vs base 0.982; top-20 overlap 20/20
+  LAMBDA=0.75: Spearman vs base 0.980; top-20 overlap 20/20
+
+ML-consensus sensitivity (G4 stance: ML is NOT in the base score): Spearman(MIRS, MIRS+15% ML) = 0.96; Spearman(MIRS, ML consensus) = 0.29; Orange expiries also flagged by >=2 ML models above 0.90: 2/2
+
+==========================================================================
+MIRS-lite - RETROSPECTIVE (descriptive; includes 12 Mar 2020)  (n = 367 expiries; 2019-07-25 to 2026-07-28)
+==========================================================================
+Tier counts: {'Green': 270, 'Amber': 93, 'Orange': 4} | Red: NOT ASSIGNABLE (no cross-market evidence in spot-only data)
+Tier by expiry type:
+tier         Amber  Green  Orange
+expiry_type                      
+Monthly         24     60       1
+Weekly          69    210       3
+Tier by year:
+tier   Amber  Green  Orange
+row_0                      
+2019       2     21       0
+2020      10     43       0
+2021      16     35       1
+2022      18     34       0
+2023      13     39       0
+2024      21     28       3
+2025       8     45       0
+2026       5     25       0
+
+Top 12 by MIRS:
+            expiry_type regime     A     T     R   Rec  n_signals     U  news_expl  MIRS    tier  ml_consensus
+Expiry date                                                                                                   
+2024-04-18       Weekly    R03  0.94  0.95  0.77  0.00          2  0.74        0.0  0.74  Orange          0.98
+2023-11-16       Weekly    R03  0.99  0.80  0.69  0.25          1  0.72        0.0  0.72   Amber          0.92
+2024-03-28      Monthly    R03  0.95  0.91  0.28  0.25          2  0.72        0.0  0.72  Orange          0.71
+2024-09-12       Weekly    R04  0.97  0.95  0.50  0.00          2  0.72        0.0  0.72  Orange          0.94
+2025-05-22       Weekly    R09  0.79  0.84  0.84  0.25          0  0.71        0.0  0.71   Green          0.75
+2023-12-21       Weekly    R03  0.88  0.85  0.44  0.25          0  0.70        0.0  0.70   Green          0.20
+2021-03-25      Monthly    R01  1.00  0.83  0.65  0.00          1  0.69        0.0  0.69   Amber          0.75
+2021-01-21       Weekly    R01  0.82  0.96  0.50  0.00          1  0.69        0.0  0.69   Amber          0.63
+2026-06-23       Weekly    R12  0.91  0.83  0.75  0.00          1  0.68        0.0  0.68   Amber          0.48
+2023-07-06       Weekly    R03  0.83  0.84  0.93  0.00          1  0.68        0.0  0.68   Amber          0.97
+2025-05-08       Weekly    R09  0.73  1.00  0.35  0.00          1  0.67        0.0  0.67   Amber          0.95
+2020-07-09       Weekly    R01  0.92  0.82  0.62  0.00          1  0.66        0.0  0.66   Amber          0.20
+
+Negative controls (listed-event expiries; the explanation term should REDUCE them). NOTE: the discount for these three is mechanical (listed event on the day), so this shows the mechanism works, not that the discount size is validated:
+  2020-03-12: signals=1  U=0.65 (rank 25/367) -> news_expl=1.0 -> MIRS=0.32 (rank 251) tier=Amber
+  2023-01-25: signals=1  U=0.34 (rank 245/367) -> news_expl=1.0 -> MIRS=0.17 (rank 339) tier=Amber
+  2024-02-01: signals=0  U=0.37 (rank 220/367) -> news_expl=1.0 -> MIRS=0.19 (rank 334) tier=Green
+
+Weight sensitivity (300 Dirichlet draws around the base weights): Spearman vs base: median 0.97, 5th pct 0.90; top-20 overlap: mean 15.8/20
+  Share of draws in which each base top-10 expiry stays in the top 20: 2024-04-18: 100%, 2023-11-16: 100%, 2024-03-28: 100%, 2024-09-12: 100%, 2025-05-22: 100%, 2023-12-21: 100%, 2021-03-25: 96%, 2021-01-21: 95%, 2026-06-23: 94%, 2023-07-06: 88%
+  LAMBDA=0.0: Spearman vs base 0.955; top-20 overlap 13/20
+  LAMBDA=0.25: Spearman vs base 0.987; top-20 overlap 19/20
+  LAMBDA=0.75: Spearman vs base 0.986; top-20 overlap 20/20
+
+ML-consensus sensitivity (G4 stance: ML is NOT in the base score): Spearman(MIRS, MIRS+15% ML) = 0.97; Spearman(MIRS, ML consensus) = 0.21; Orange expiries also flagged by >=2 ML models above 0.90: 3/4
+
+INTERPRETATION RULE: MIRS ranks SURVEILLANCE PRIORITY only; it is a data-limited upper bound (hedge, liquidity, rebalance, arbitrage explanations and all cross-market terms are not testable). NOT evidence of manipulation.

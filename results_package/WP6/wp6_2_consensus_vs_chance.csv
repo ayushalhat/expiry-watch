@@ -1,0 +1,7 @@
+version,threshold,n,observed_ge2_of_3,expected_ge2_if_independent,p_perm_ge2,observed_all3,expected_all3,p_perm_all3
+Version A,0.8,239,27,21.452,0.0528,1,1.4102,0.7776
+Version A,0.9,239,18,10.2282,0.0026,0,0.4606,1.0
+Version B,0.8,135,18,16.7348,0.3744,3,1.2512,0.1274
+Version B,0.9,135,13,6.2364,0.0012,1,0.2896,0.2596
+Retrospective,0.8,345,35,35.9344,0.6394,9,2.7268,0.0004
+Retrospective,0.9,345,15,9.3798,0.022,1,0.3246,0.2824

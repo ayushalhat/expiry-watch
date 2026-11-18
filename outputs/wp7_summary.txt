@@ -1,0 +1,17 @@
+# WP7 News Evidence Audit — ExpiryWatch India
+
+## Scope and method
+
+This application validates a curated evidence catalogue; it does not itself search the web or call an LLM. Each evidence item must have a category, event date, factual summary, human review status, public-availability timestamp and at least one direct HTTPS source with title, publisher and timezone-aware publication timestamp. Sources published after the 15:30 IST expiry-close cutoff are rejected. Items outside the stated +/-2 calendar-day window are rejected. These checks address provenance and timing; they do not prove that an item caused a price move.
+
+NES is an exploratory temporal-proximity index. It is not a calibrated causal explanation score. The sensitivity output starts from Step 4's pre-news component U, replaces Step 4's mechanical discount, leaves the base MIRS and tier unchanged, and is explicitly not inferential.
+
+## Audit result
+
+- Forensic dates: 17
+- Dates with at least one source-complete, human-reviewed item: 0
+- Source-complete reviewed items: 0
+- Dates pending review: 17
+- Legacy domain-only citations were not accepted as evidence.
+
+See `wp7_nes_scores.csv` and `wp7_evidence_packs.md` for date-level audit results.

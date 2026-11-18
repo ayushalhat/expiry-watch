@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "retrieval_date": "2026-11-18",
+  "purpose": "Human-reviewed evidence catalogue. No LLM retrieval is wired into the current script.",
+  "dates": {
+    "2020-03-12": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2021-12-16": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2022-03-10": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2022-03-24": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2023-01-25": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2023-07-06": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2023-11-16": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2023-12-21": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2024-02-01": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2024-03-28": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2024-04-18": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2024-09-12": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2025-04-30": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2025-05-08": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2025-05-22": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2025-06-19": {
+      "review_status": "pending",
+      "items": []
+    },
+    "2026-06-23": {
+      "review_status": "pending",
+      "items": []
+    }
+  }
+}

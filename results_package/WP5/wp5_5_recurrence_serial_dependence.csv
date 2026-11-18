@@ -1,0 +1,7 @@
+measure,expiry_type,n,lag1_autocorr,p_permutation,n_top_decile,consecutive_top_decile_pairs,expected_pairs_if_random,p_pairs_permutation,q_BH_autocorr,q_BH_pairs
+final-15-min range diff,Weekly,282,0.06778000078126588,0.2448,29,2,2.8926,0.817,0.6615,1.0
+final-15-min range diff,Monthly,85,-0.03831922961412512,0.7254,9,0,0.8398,1.0,0.7254,1.0
+final-15-min |return| diff,Weekly,282,0.04485875476078441,0.441,29,4,2.8654,0.3218,0.6615,0.9653999999999999
+final-15-min |return| diff,Monthly,85,-0.06446495023119651,0.5588,9,0,0.869,1.0,0.6705599999999999,1.0
+last-bar share diff,Weekly,282,0.05212862924548841,0.3774,29,7,2.8406,0.0144,0.6615,0.0864
+last-bar share diff,Monthly,85,-0.10154162602332353,0.3226,9,0,0.8332,1.0,0.6615,1.0

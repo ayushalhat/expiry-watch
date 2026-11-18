@@ -1,0 +1,163 @@
+========================================================================
+Step 3 v2 - unsupervised anomaly ranking (ExpiryWatch India)
+========================================================================
+model_ok expiries: 367
+Step 2 walk-forward residuals: 239 rows
+NaN counts: {'reversal_ratio': 89, 'resid_z': 128}
+Rank matrix (367, 14); rows with a complete BEHAVIOUR vector: 345
+
+========================================================================
+VERSION A - behaviour features only (no Step 2 residual)
+========================================================================
+Features: ['evr', 'r4_diff', 'range4_diff', 'lbs_diff', 'reversal_ratio']
+  [A] 2022: scored 52 expiries (train rows 106)
+  [A] 2023: scored 52 expiries (train rows 158)
+  [A] 2024: scored 52 expiries (train rows 210)
+  [A] 2025: scored 53 expiries (train rows 262)
+  [A] 2026: scored 30 expiries (train rows 315)
+
+========================================================================
+VERSION B - behaviour + Step 2 walk-forward residual (burn-in 2022-2023, scored 2024+)
+========================================================================
+  [B] 2022: skipped (only 0 training rows, need 80)
+  [B] 2023: skipped (only 32 training rows, need 80)
+  [B] 2024: scored 52 expiries (train rows 84)
+  [B] 2025: scored 53 expiries (train rows 136)
+  [B] 2026: scored 30 expiries (train rows 189)
+
+========================================================================
+COMPARISON - v1 original 13 features (state + behaviour), same walk-forward, one-sided
+========================================================================
+  [A_orig] 2022: scored 52 expiries (train rows 106)
+  [A_orig] 2023: scored 52 expiries (train rows 158)
+  [A_orig] 2024: scored 52 expiries (train rows 210)
+  [A_orig] 2025: scored 53 expiries (train rows 262)
+  [A_orig] 2026: scored 30 expiries (train rows 315)
+
+========================================================================
+RETROSPECTIVE in-sample run (ALL years; descriptive only, NOT out-of-sample)
+========================================================================
+
+[Version A (walk-forward)] n scored = 239
+  IF vs LOF: Spearman 0.10 | top-20 Jaccard 0.00
+  IF vs SVM: Spearman -0.03 | top-20 Jaccard 0.21
+  LOF vs SVM: Spearman 0.17 | top-20 Jaccard 0.08
+  Top-20 by avg percentile: Weekly 16, Monthly 4  (base rates in scored set: weekly 77%)
+  Negative control 2020-03-12: not in this scored set
+  Negative control 2023-01-25: priority rank 157 of 239 (avg percentile 0.39)
+  Negative control 2024-02-01: priority rank 103 of 239 (avg percentile 0.51)
+
+[Version B (walk-forward, 2024+)] n scored = 135
+  IF vs LOF: Spearman 0.27 | top-20 Jaccard 0.05
+  IF vs SVM: Spearman -0.19 | top-20 Jaccard 0.29
+  LOF vs SVM: Spearman 0.00 | top-20 Jaccard 0.11
+  Top-20 by avg percentile: Weekly 15, Monthly 5  (base rates in scored set: weekly 77%)
+  Negative control 2020-03-12: not in this scored set
+  Negative control 2023-01-25: not in this scored set
+  Negative control 2024-02-01: priority rank 101 of 135 (avg percentile 0.38)
+
+[v1-style 13 features (walk-forward)] n scored = 239
+  IF vs LOF: Spearman 0.54 | top-20 Jaccard 0.21
+  IF vs SVM: Spearman 0.20 | top-20 Jaccard 0.14
+  LOF vs SVM: Spearman 0.16 | top-20 Jaccard 0.29
+  Top-20 by avg percentile: Weekly 14, Monthly 6  (base rates in scored set: weekly 77%)
+  Negative control 2020-03-12: not in this scored set
+  Negative control 2023-01-25: priority rank 20 of 239 (avg percentile 0.86)
+  Negative control 2024-02-01: priority rank 12 of 239 (avg percentile 0.93)
+
+[RETROSPECTIVE in-sample] n scored = 345
+  IF vs LOF: Spearman 0.12 | top-20 Jaccard 0.00
+  IF vs SVM: Spearman -0.06 | top-20 Jaccard 0.33
+  LOF vs SVM: Spearman 0.22 | top-20 Jaccard 0.03
+  Top-20 by avg percentile: Weekly 15, Monthly 5  (base rates in scored set: weekly 79%)
+  Negative control 2020-03-12: priority rank 6 of 345 (avg percentile 0.91)
+  Negative control 2023-01-25: priority rank 171 of 345 (avg percentile 0.50)
+  Negative control 2024-02-01: priority rank 155 of 345 (avg percentile 0.52)
+
+State-contamination check (A vs v1-style): Spearman(avg_pct_A, avg_pct_v1) = 0.42; Spearman(rv20, v1 score) = 0.12 vs Spearman(rv20, A score) = 0.13
+
+========================================================================
+GATE G4 - does the ML ranking add anything beyond the Step 2 residual? (Version A vs residual)
+========================================================================
+n = 239; Spearman(ML avg percentile, residual) = 0.14; top-20 overlap 5/20
+Reading: high correlation + high overlap => ML mostly re-discovers the residual (adds little); moderate => complementary (EVR/reversal/lbs dimensions); low => check features.
+
+========================================================================
+STABILITY - Version A, Spearman of avg percentile vs default settings
+========================================================================
+  [stab] 2022: scored 52 expiries (train rows 106)
+  [stab] 2023: scored 52 expiries (train rows 158)
+  [stab] 2024: scored 52 expiries (train rows 210)
+  [stab] 2025: scored 53 expiries (train rows 262)
+  [stab] 2026: scored 30 expiries (train rows 315)
+  IF 100 trees, seed 1   Spearman 1.00 | top-20 overlap 20/20
+  [stab] 2022: scored 52 expiries (train rows 106)
+  [stab] 2023: scored 52 expiries (train rows 158)
+  [stab] 2024: scored 52 expiries (train rows 210)
+  [stab] 2025: scored 53 expiries (train rows 262)
+  [stab] 2026: scored 30 expiries (train rows 315)
+  IF 400 trees, seed 2   Spearman 1.00 | top-20 overlap 20/20
+  [stab] 2022: scored 52 expiries (train rows 106)
+  [stab] 2023: scored 52 expiries (train rows 158)
+  [stab] 2024: scored 52 expiries (train rows 210)
+  [stab] 2025: scored 53 expiries (train rows 262)
+  [stab] 2026: scored 30 expiries (train rows 315)
+  LOF k=10               Spearman 0.93 | top-20 overlap 17/20
+  [stab] 2022: scored 52 expiries (train rows 106)
+  [stab] 2023: scored 52 expiries (train rows 158)
+  [stab] 2024: scored 52 expiries (train rows 210)
+  [stab] 2025: scored 53 expiries (train rows 262)
+  [stab] 2026: scored 30 expiries (train rows 315)
+  LOF k=25               Spearman 0.89 | top-20 overlap 18/20
+  [stab] 2022: scored 52 expiries (train rows 106)
+  [stab] 2023: scored 52 expiries (train rows 158)
+  [stab] 2024: scored 52 expiries (train rows 210)
+  [stab] 2025: scored 53 expiries (train rows 262)
+  [stab] 2026: scored 30 expiries (train rows 315)
+  SVM nu=0.05            Spearman 1.00 | top-20 overlap 18/20
+  [stab] 2022: scored 52 expiries (train rows 106)
+  [stab] 2023: scored 52 expiries (train rows 158)
+  [stab] 2024: scored 52 expiries (train rows 210)
+  [stab] 2025: scored 53 expiries (train rows 262)
+  [stab] 2026: scored 30 expiries (train rows 315)
+  SVM nu=0.20            Spearman 0.99 | top-20 overlap 15/20
+
+Top 15 - Version A (walk-forward, 2022+):
+            expiry_type regime  pct_IF  pct_LOF  pct_SVM  avg_pct  priority_rank
+Expiry date                                                                     
+2025-04-30      Monthly    R09   0.996    0.775    0.992    0.921            1.0
+2023-08-31      Monthly    R03   0.911    0.848    1.000    0.920            2.0
+2023-05-04       Weekly    R03   0.981    0.709    1.000    0.897            3.0
+2024-04-18       Weekly    R03   0.990    0.662    0.981    0.878            4.0
+2023-07-06       Weekly    R03   0.981    0.658    0.987    0.876            5.0
+2024-12-05       Weekly    R06   0.986    0.662    0.976    0.875            6.0
+2024-07-18       Weekly    R04   0.981    0.681    0.957    0.873            7.0
+2023-11-16       Weekly    R03   0.981    0.646    0.981    0.869            8.0
+2026-01-20       Weekly    R11   0.778    0.825    0.990    0.865            9.0
+2024-01-11       Weekly    R03   0.595    1.000    0.990    0.862           10.0
+2022-04-07       Weekly    R02   0.925    0.604    1.000    0.843           11.0
+2024-09-12       Weekly    R04   0.967    0.562    0.981    0.837           12.0
+2025-05-08       Weekly    R09   0.989    0.534    0.981    0.835           13.0
+2022-11-17       Weekly    R02   0.491    0.991    1.000    0.827           14.0
+2022-06-09       Weekly    R02   0.726    0.745    1.000    0.824           15.0
+
+Top 15 - Version B (walk-forward, 2024+):
+            expiry_type regime  pct_IF  pct_LOF  pct_SVM  avg_pct  priority_rank
+Expiry date                                                                     
+2024-04-10       Weekly    R03   0.952    0.929    0.988    0.956            1.0
+2024-01-25      Monthly    R03   0.988    0.810    1.000    0.933            2.0
+2024-12-12       Weekly    R06   0.869    0.929    0.988    0.929            3.0
+2025-04-30      Monthly    R09   1.000    0.765    1.000    0.922            4.0
+2024-05-02       Weekly    R04   0.798    0.929    0.988    0.905            5.0
+2024-04-18       Weekly    R03   1.000    0.726    0.976    0.901            6.0
+2024-09-12       Weekly    R04   0.988    0.738    0.976    0.901            6.0
+2024-03-28      Monthly    R03   0.929    0.714    0.964    0.869            8.0
+2024-05-30      Monthly    R04   0.952    0.679    0.976    0.869            8.0
+2025-01-16       Weekly    R07   0.985    0.647    0.971    0.868           10.0
+2026-01-20       Weekly    R11   0.762    0.794    0.995    0.850           11.0
+2024-06-06       Weekly    R04   0.940    0.821    0.774    0.845           12.0
+2025-06-19       Weekly    R09   0.882    0.647    0.993    0.841           13.0
+2024-05-16       Weekly    R04   0.893    0.821    0.762    0.825           14.0
+2025-05-08       Weekly    R09   0.985    0.463    0.978    0.809           15.0
+
+INTERPRETATION RULE: scores rank SURVEILLANCE PRIORITY only; high = unusually active close/behaviour relative to past expiries of the same type. NOT evidence of manipulation or any legal violation.

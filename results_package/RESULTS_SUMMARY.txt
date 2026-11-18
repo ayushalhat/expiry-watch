@@ -1,0 +1,89 @@
+======================================================================
+RESULTS PACKAGE - WP5 (partial) and WP6
+======================================================================
+model_ok expiries: 367  (weekly 282, monthly 85)
+NaN in WP2 difference columns: 0
+
+[WP5.1] Settlement timing: expiry minus matched controls
+  All S1 expiries        n=367 | |r4| diff +1.48 bps (+19%), p=0.004 | range diff +1.88 bps (+12%), p=0.000
+  Weekly                 n=282 | |r4| diff +0.53 bps (+7%), p=0.328 | range diff +0.36 bps (+2%), p=0.486
+  Monthly                n= 85 | |r4| diff +4.62 bps (+60%), p=0.000 | range diff +6.91 bps (+45%), p=0.000
+  Era 2019-2022 (all)    n=180 | |r4| diff -0.13 bps (-1%), p=0.865 | range diff +0.32 bps (+2%), p=0.666
+  Era 2023-2026 (all)    n=187 | |r4| diff +3.02 bps (+50%), p=0.000 | range diff +3.37 bps (+27%), p=0.000
+
+[WP5.2] Concentration: share of the total positive excess final-bar activity contributed by the top 10% of expiries
+  All      r4_diff : top 10% = 37 expiries -> 53% of positive excess; 151% of NET excess (>100% means the rest net to below zero)
+  All      rng_diff: top 10% = 37 expiries -> 52% of positive excess; 117% of NET excess (>100% means the rest net to below zero)
+  Weekly   r4_diff : top 10% = 29 expiries -> 58% of positive excess; 374% of NET excess (>100% means the rest net to below zero)
+  Weekly   rng_diff: top 10% = 29 expiries -> 59% of positive excess; 504% of NET excess (>100% means the rest net to below zero)
+  Monthly  r4_diff : top 10% = 9 expiries -> 40% of positive excess; 60% of NET excess (>100% means the rest net to below zero)
+  Monthly  rng_diff: top 10% = 9 expiries -> 37% of positive excess; 43% of NET excess (>100% means the rest net to below zero)
+
+[WP5.3] Strike alignment (UNWEIGHTED by open interest; close = 15:30 spot close, not the settlement VWAP)
+  All                          dist50: n=367 mean distance 0.244 (no-pinning 0.250); within 0.05: 11.4% vs 10% expected, p=0.339
+  All                          dist100: n=367 mean distance 0.259 (no-pinning 0.250); within 0.05: 8.2% vs 10% expected, p=0.296
+  Monthly                      dist50: n=85 mean distance 0.258 (no-pinning 0.250); within 0.05: 8.2% vs 10% expected, p=0.719
+  Monthly                      dist100: n=85 mean distance 0.270 (no-pinning 0.250); within 0.05: 3.5% vs 10% expected, p=0.045
+  Top-20 MIRS (walk-forward)   dist50: n=20 mean distance 0.181 (no-pinning 0.250); within 0.05: 15.0% vs 10% expected, p=0.445
+  Top-20 MIRS (walk-forward)   dist100: n=20 mean distance 0.300 (no-pinning 0.250); within 0.05: 10.0% vs 10% expected, p=1.000
+
+[WP5.4] Next-day signed reversal, expiry minus controls (positive = next day moves against the expiry-day direction)
+  All                                                n=367 mean +0.115 pp  share>0 0.51  p=0.090  q=0.383
+  Weekly                                             n=282 mean +0.076 pp  share>0 0.50  p=0.298  q=0.383
+  Monthly                                            n= 85 mean +0.245 pp  share>0 0.55  p=0.140  q=0.383
+  Large final-bar move (top quartile within type)    n= 93 mean +0.192 pp  share>0 0.54  p=0.205  q=0.383
+  Other expiries                                     n=274 mean +0.089 pp  share>0 0.50  p=0.237  q=0.383
+  No listed event within 5 days                      n=347 mean +0.113 pp  share>0 0.51  p=0.101  q=0.383
+  Listed event within 5 days                         n= 20 mean +0.162 pp  share>0 0.50  p=0.673  q=0.673
+  Large move AND no listed event                     n= 85 mean +0.167 pp  share>0 0.55  p=0.262  q=0.383
+  High settlement-timing T>=0.80 (walk-forward)      n= 42 mean +0.093 pp  share>0 0.48  p=0.665  q=0.673
+
+[WP5.5] Recurrence: do unusually active closes cluster in time? (permutation tests, consecutive same-type expiries)
+  final-15-min range diff      Weekly   n=282 lag-1 autocorr +0.068 (perm p=0.245); top-decile consecutive pairs 2 vs 2.9 expected (p=0.817, BH q=1.000)
+  final-15-min range diff      Monthly  n= 85 lag-1 autocorr -0.038 (perm p=0.725); top-decile consecutive pairs 0 vs 0.8 expected (p=1.000, BH q=1.000)
+  final-15-min |return| diff   Weekly   n=282 lag-1 autocorr +0.045 (perm p=0.441); top-decile consecutive pairs 4 vs 2.9 expected (p=0.322, BH q=0.965)
+  final-15-min |return| diff   Monthly  n= 85 lag-1 autocorr -0.064 (perm p=0.559); top-decile consecutive pairs 0 vs 0.9 expected (p=1.000, BH q=1.000)
+  last-bar share diff          Weekly   n=282 lag-1 autocorr +0.052 (perm p=0.377); top-decile consecutive pairs 7 vs 2.8 expected (p=0.014, BH q=0.086)
+  last-bar share diff          Monthly  n= 85 lag-1 autocorr -0.102 (perm p=0.323); top-decile consecutive pairs 0 vs 0.8 expected (p=1.000, BH q=1.000)
+  Quarter-end vs other monthly expiries (final-bar differences): r4_diff: +0.00040 vs +0.00049 (p=0.833, n=28/57); rng_diff: +0.00071 vs +0.00068 (p=0.578, n=28/57); lbs_diff: +0.04413 vs +0.05237 (p=0.981, n=28/57)
+  Share of expiries in each year's type-specific top decile of final-15-min range difference: 2019: 17%, 2020: 4%, 2021: 12%, 2022: 10%, 2023: 8%, 2024: 17%, 2025: 8%, 2026: 13%
+
+[WP6.1] Agreement between the three unsupervised models (Spearman, bootstrap 95% CI)
+  Version A (walk-forward, behaviour features)   IF vs LOF  n=239 rho=+0.103 [-0.05, +0.24] p=0.112
+  Version A (walk-forward, behaviour features)   IF vs SVM  n=239 rho=-0.026 [-0.16, +0.11] p=0.693
+  Version A (walk-forward, behaviour features)   LOF vs SVM n=239 rho=+0.175 [+0.04, +0.30] p=0.007
+  Version B (walk-forward 2024+, + residual)     IF vs LOF  n=135 rho=+0.275 [+0.09, +0.44] p=0.001
+  Version B (walk-forward 2024+, + residual)     IF vs SVM  n=135 rho=-0.190 [-0.39, +0.01] p=0.028
+  Version B (walk-forward 2024+, + residual)     LOF vs SVM n=135 rho=+0.003 [-0.18, +0.17] p=0.972
+  Retrospective (in-sample)                      IF vs LOF  n=345 rho=+0.118 [+0.01, +0.23] p=0.029
+  Retrospective (in-sample)                      IF vs SVM  n=345 rho=-0.059 [-0.17, +0.06] p=0.276
+  Retrospective (in-sample)                      LOF vs SVM n=345 rho=+0.216 [+0.12, +0.30] p=0.000
+
+[WP6.2] Expiries flagged by >=2 of 3 models vs what independence would give (permutation)
+  Version A      thr 0.80: >=2 models: 27 vs 21.5 expected (p=0.053); all 3: 1 vs 1.41 (p=0.778)
+  Version A      thr 0.90: >=2 models: 18 vs 10.2 expected (p=0.003); all 3: 0 vs 0.46 (p=1.000)
+  Version B      thr 0.80: >=2 models: 18 vs 16.7 expected (p=0.374); all 3: 3 vs 1.25 (p=0.127)
+  Version B      thr 0.90: >=2 models: 13 vs 6.2 expected (p=0.001); all 3: 1 vs 0.29 (p=0.260)
+  Retrospective  thr 0.80: >=2 models: 35 vs 35.9 expected (p=0.639); all 3: 9 vs 2.73 (p=0.000)
+  Retrospective  thr 0.90: >=2 models: 15 vs 9.4 expected (p=0.022); all 3: 1 vs 0.32 (p=0.282)
+
+[WP6.3] Profile of consensus-flagged expiries (PARTLY CIRCULAR: the ML features include the same final-bar behaviour)
+   threshold                 group   n  mean_residual  mean_EVR  mean_range_diff_bps  monthly_share  p_mw_residual  p_mw_EVR
+         0.8 >=2 models above 0.80  27         0.8909    1.5841              13.8057         0.1481         0.0004    0.0216
+         0.8                  rest 212         0.2154    1.1406               1.2729         0.2406            NaN       NaN
+         0.9 >=2 models above 0.90  18         1.1353    1.7717              16.6465         0.1667         0.0000    0.0041
+         0.9                  rest 221         0.2230    1.1434               1.5519         0.2353            NaN       NaN
+  Gate G4: Spearman(ML sum of percentiles, Step 2 residual) = +0.137 (p=0.034), n=239
+
+[WP6.4] Tier counts vs the signal cut-off (walk-forward set)
+   signal_cutoff  n_scored  orange  amber  green
+            0.80       239      14    110    115
+            0.85       239       7     94    138
+            0.90       239       2     64    173
+            0.95       239       1     34    204
+  Green expiries among the top-20 by MIRS: 6/20
+
+======================================================================
+PACKAGE CONTENTS
+======================================================================
+INTERPRETATION RULE: all results rank SURVEILLANCE PRIORITY / describe market behaviour; none is evidence of manipulation.

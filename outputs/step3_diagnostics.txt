@@ -1,0 +1,136 @@
+======================================================================
+Step 3 — Unsupervised anomaly detection (ExpiryWatch India)
+======================================================================
+
+model_ok expiries loaded: 367
+Loading WP2 control-difference columns …
+  WP2 rows read: 380, non-null r4_diff: 376
+Loading Step 2 walk-forward residuals …
+  Walk-forward residuals: 239 rows (2022+)
+  Retrospective residuals: 367 rows (all years)
+
+Building feature matrix …
+  Raw feature matrix shape: (367, 16)
+  NaN counts:
+resid_z    128
+
+Computing past-only percentile ranks within expiry type …
+  Rank matrix shape: (367, 14)
+  NaN counts after ranking:
+evr                 2
+r4_abs              2
+r4_diff             2
+range4_diff         2
+lbs                 2
+lbs_diff            2
+overnight_gap       2
+rv20                2
+r5                  2
+events_pm5d         2
+reversal_ratio      2
+has_reversal        2
+strike50            2
+resid_z           130
+  Saved → outputs/step3_feature_matrix.csv
+
+======================================================================
+VERSION A — no Step 2 residual (all years, 367 expiries max)
+======================================================================
+Features A (13): ['evr', 'r4_abs', 'r4_diff', 'range4_diff', 'lbs', 'lbs_diff', 'overnight_gap', 'rv20', 'r5', 'events_pm5d', 'reversal_ratio', 'has_reversal', 'strike50']
+    2022: scored 52 expiries  (train n=126, W=97, M=29)
+    2023: scored 52 expiries  (train n=178, W=137, M=41)
+    2024: scored 52 expiries  (train n=230, W=177, M=53)
+    2025: scored 53 expiries  (train n=282, W=217, M=65)
+    2026: scored 30 expiries  (train n=335, W=258, M=77)
+
+Version A: 239 expiries scored
+
+======================================================================
+VERSION B — with Step 2 residual z-score (2022+, 237 expiries max)
+======================================================================
+Features B (14): ['evr', 'r4_abs', 'r4_diff', 'range4_diff', 'lbs', 'lbs_diff', 'overnight_gap', 'rv20', 'r5', 'events_pm5d', 'reversal_ratio', 'has_reversal', 'strike50', 'resid_z']
+    2022: skipped (past Weekly=0, Monthly=0 — below min history)
+    2023: skipped (past Weekly=39, Monthly=11 — below min history)
+    2024: scored 52 expiries  (train n=102, W=79, M=23)
+    2025: scored 53 expiries  (train n=154, W=119, M=35)
+    2026: scored 30 expiries  (train n=207, W=160, M=47)
+
+Version B: 135 expiries scored
+
+======================================================================
+DIAGNOSTICS
+======================================================================
+
+[Version A] n = 239 scored expiries
+  Spearman ρ(IF_score vs LOF_score) = 0.775  (p=0.000)
+  Spearman ρ(IF_score vs SVM_score) = 0.742  (p=0.000)
+  Spearman ρ(LOF_score vs SVM_score) = 0.609  (p=0.000)
+  Top-20 Jaccard(IF ∩ LOF): 16/24 = 0.67
+  Top-20 Jaccard(IF ∩ SVM): 8/32 = 0.25
+  Top-20 Jaccard(LOF ∩ SVM): 5/35 = 0.14
+  Top-20 by avg_rank — Weekly: 18, Monthly: 2
+  Negative-control ranks (out of 239, lower rank = more anomalous):
+    2020-03-12: not in scored set
+    2023-01-25: avg_rank_rank=23  IF_rank=10  LOF_rank=10  SVM_rank=76
+    2024-02-01: avg_rank_rank=67  IF_rank=22  LOF_rank=3  SVM_rank=194
+
+[Version B] n = 135 scored expiries
+  Spearman ρ(IF_score vs LOF_score) = 0.855  (p=0.000)
+  Spearman ρ(IF_score vs SVM_score) = 0.825  (p=0.000)
+  Spearman ρ(LOF_score vs SVM_score) = 0.701  (p=0.000)
+  Top-20 Jaccard(IF ∩ LOF): 14/26 = 0.54
+  Top-20 Jaccard(IF ∩ SVM): 15/25 = 0.60
+  Top-20 Jaccard(LOF ∩ SVM): 11/29 = 0.38
+  Top-20 by avg_rank — Weekly: 18, Monthly: 2
+  Negative-control ranks (out of 135, lower rank = more anomalous):
+    2020-03-12: not in scored set
+    2023-01-25: not in scored set
+    2024-02-01: avg_rank_rank=42  IF_rank=39  LOF_rank=7  SVM_rank=87
+
+Top 20 — Version A (all years, no residual):
+            expiry_type regime  IF_rank  LOF_rank  SVM_rank   avg_rank  avg_rank_rank  IF_score  LOF_score  SVM_score
+Expiry date                                                                                                          
+2024-06-06       Weekly    R04      1.0       1.0       2.0   1.333333            1.0  0.066546   0.313055   0.674623
+2026-02-03       Weekly    R11      4.0       9.0      14.0   9.000000            2.0  0.052897   0.193794   0.332596
+2024-07-18       Weekly    R04      2.0       6.0      27.0  11.666667            3.0  0.058853   0.198653   0.109773
+2023-02-02       Weekly    R02      5.0       4.0      29.0  12.666667            4.0  0.048915   0.204772   0.097953
+2024-06-13       Weekly    R04     18.0      21.0       1.0  13.333333            6.0  0.013428  -0.017089   0.801142
+2025-02-06       Weekly    R08     11.0       5.0      24.0  13.333333            6.0  0.025444   0.201188   0.215060
+2026-04-13       Weekly    R12     16.0      19.0       5.0  13.333333            6.0  0.013961  -0.012185   0.516271
+2024-12-19       Weekly    R06     15.0      20.0       7.0  14.000000            8.0  0.014012  -0.014651   0.417298
+2025-04-03       Weekly    R09      8.0      14.0      22.0  14.666667            9.0  0.038721   0.105243   0.228512
+2025-04-24       Weekly    R09     17.0      17.0      15.0  16.333333           10.5  0.013755   0.025929   0.321167
+2026-03-02       Weekly    R11     24.0      22.0       3.0  16.333333           10.5  0.002849  -0.022939   0.608138
+2024-12-05       Weekly    R06     20.0      23.0      12.0  18.333333           12.0  0.009631  -0.024482   0.350442
+2022-02-03       Weekly    R02      3.0       8.0      48.0  19.666667           13.0  0.056829   0.196653  -0.006805
+2024-04-18       Weekly    R03     21.0      26.0      13.0  20.000000           14.0  0.007909  -0.041459   0.337110
+2025-04-09       Weekly    R09      7.0      16.0      40.0  21.000000           15.0  0.042694   0.040391   0.034157
+2022-01-27      Monthly    R02      9.0       2.0      63.0  24.666667           16.0  0.038072   0.244885  -0.076523
+2023-11-02       Weekly    R03     29.0      41.0       8.0  26.000000           17.0 -0.006757  -0.064190   0.385677
+2026-03-10       Weekly    R11     30.0      33.0      17.0  26.666667           18.0 -0.008697  -0.049417   0.272466
+2026-03-24       Weekly    R11     26.0      29.0      26.0  27.000000           19.0 -0.005617  -0.045271   0.124116
+2024-12-26      Monthly    R06     14.0      25.0      43.0  27.333333           20.0  0.014383  -0.038800   0.014984
+
+Top 20 — Version B (2022+, with residual):
+            expiry_type regime  IF_rank  LOF_rank  SVM_rank   avg_rank  avg_rank_rank  IF_score  LOF_score  SVM_score
+Expiry date                                                                                                          
+2026-02-03       Weekly    R11      1.0       2.0       3.0   2.000000            1.0  0.075811   0.225489   0.532451
+2024-06-06       Weekly    R04      3.0       1.0      10.0   4.666667            2.0  0.051551   0.271995   0.319722
+2024-06-13       Weekly    R04      4.0      15.0       2.0   7.000000            3.0  0.051173   0.052351   0.598213
+2025-02-06       Weekly    R08      5.0       6.0      12.0   7.666667            4.0  0.044599   0.155162   0.276317
+2024-12-19       Weekly    R06      9.0      13.0       7.0   9.666667            5.0  0.026976   0.067856   0.425701
+2024-07-18       Weekly    R04      8.0       3.0      19.0  10.000000            6.0  0.033302   0.219414   0.191778
+2025-04-09       Weekly    R09      7.0      10.0      17.0  11.333333            7.0  0.035682   0.109060   0.198494
+2025-04-03       Weekly    R09      6.0       4.0      25.0  11.666667            8.5  0.037395   0.185512   0.125782
+2026-04-13       Weekly    R12     17.0      17.0       1.0  11.666667            8.5  0.006860   0.022576   0.655839
+2024-12-26      Monthly    R06     13.0      16.0       9.0  12.666667           10.0  0.016311   0.022818   0.338025
+2025-04-24       Weekly    R09     14.0      21.0       4.0  13.000000           11.0  0.014973  -0.007694   0.496561
+2026-03-02       Weekly    R11     20.0      22.0       6.0  16.000000           12.0  0.005863  -0.013547   0.453223
+2026-04-07       Weekly    R12     27.0      11.0      11.0  16.333333           13.0 -0.002611   0.108076   0.280822
+2024-12-05       Weekly    R06     16.0      14.0      22.0  17.333333           14.0  0.007776   0.055731   0.174519
+2024-02-15       Weekly    R03     25.0      18.0      13.0  18.666667           15.0 -0.000097   0.020766   0.259312
+2024-11-21       Weekly    R06     10.0      32.0      15.0  19.000000           16.0  0.025220  -0.065027   0.231685
+2024-04-18       Weekly    R03     12.0      34.0      16.0  20.666667           17.5  0.018754  -0.070021   0.230970
+2026-03-10       Weekly    R11     24.0      30.0       8.0  20.666667           17.5 -0.000093  -0.060109   0.377918
+2024-05-30      Monthly    R04      2.0       5.0      59.0  22.000000           19.0  0.053140   0.156788  -0.133128
+2024-11-14       Weekly    R05     23.0      19.0      26.0  22.666667           20.5  0.000386   0.017849   0.125073

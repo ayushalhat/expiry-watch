@@ -1,0 +1,13 @@
+Post-hoc changes to scripts (disclosed for report transparency)
+================================================================
+Step 3 (src/step3_unsupervised.py):
+  - MIN_TRAIN_ROWS changed 90 -> 80 (after seeing results, so Version B scores 2024 fold with 84 training rows)
+  - Test jitter removed from Xte (kept only on Xtr): test points were being perturbed unnecessarily; jitter on Xtr is kept to break tied rows from percentile clipping
+  - LOF training reference: a temporary edit changed (-clf.negative_outlier_factor_, ...) to (-clf.score_samples(Xtr), ...); REVERTED back to negative_outlier_factor_ after calibration test showed score_samples(Xtr) inflates test percentiles by ~+0.03 (in-sample self-neighbour bias)
+  Edit dates: approximately 2026-11-16
+
+Step 4 (src/step4_mirs_lite.py): no post-hoc changes; script matches the specification exactly.
+
+Step 5 (src/step5_forensics.py): no post-hoc changes.
+
+Note: steps 1, 2 and the verify scripts were not changed post-hoc.
