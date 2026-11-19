@@ -1,0 +1,61 @@
+{
+ "n_pre": 367,
+ "n_cas": 9,
+ "tieout_corr": 0.9571611518055707,
+ "scan_D1_dL": {
+  "value": 0.13679795917752685,
+  "share_of_breaks_as_extreme": 0.7056962025316456,
+  "n_breaks": 316,
+  "date": "2024-10-03"
+ },
+ "scan_D1_dE": {
+  "value": -0.20062229676995794,
+  "share_of_breaks_as_extreme": 0.5537974683544303,
+  "n_breaks": 316,
+  "date": "2024-10-03"
+ },
+ "scan_D1_dAL": {
+  "value": -11.538461538461537,
+  "share_of_breaks_as_extreme": 0.4272151898734177,
+  "n_breaks": 316,
+  "date": "2024-10-03"
+ },
+ "scan_D2_dL": {
+  "value": -0.17287594385981753,
+  "share_of_breaks_as_extreme": 0.5981012658227848,
+  "n_breaks": 316,
+  "date": "2025-09-02"
+ },
+ "scan_D2_dE": {
+  "value": -0.2605015519405456,
+  "share_of_breaks_as_extreme": 0.36075949367088606,
+  "n_breaks": 316,
+  "date": "2025-09-02"
+ },
+ "scan_D2_dAL": {
+  "value": -19.23076923076923,
+  "share_of_breaks_as_extreme": 0.0981012658227848,
+  "n_breaks": 316,
+  "date": "2025-09-02"
+ },
+ "cas_jump_exp_med": 14.295172362973444,
+ "cas_jump_non_med": 12.445781790584979,
+ "cas_jump_n": [
+  9,
+  32
+ ],
+ "cas_jump_exp_list": [
+  61.7,
+  8.8,
+  5.3,
+  30.7,
+  31.3,
+  2.1,
+  23.2,
+  8.8,
+  14.3
+ ],
+ "cas_nonexp_jump_mean": 14.848186697155082,
+ "pre_late_nonexp_med": 5.703088795907429,
+ "cas_single_jump_share": 0.975609756097561
+}

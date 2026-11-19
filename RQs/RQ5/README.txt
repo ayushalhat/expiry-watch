@@ -1,0 +1,1 @@
+RQ5 v2 additions: rq5_v2.py (horizons with Holm, one-to-one matching, regime/period table, unconditional RR). Outputs: tables/v2_*.csv, v2.json, v2.log. Run: python3 -I rq5_v2.py <out_dir> after rq5_final.py. Main text: rq5_v2.tex.

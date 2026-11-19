@@ -1,0 +1,18 @@
+{
+ "direction": {
+  "expiry_alert_up": 37,
+  "expiry_alert_n": 55,
+  "placebo_alert_up": 63,
+  "placebo_alert_n": 124,
+  "expiry_up_share": 67.27272727272727,
+  "placebo_up_share": 50.806451612903224,
+  "fisher_p": 0.05033499339759891
+ },
+ "placebo_runs": {
+  "n": 124,
+  "runs": 55,
+  "null_mean": 62.896,
+  "p": 0.171
+ },
+ "b3_mw_p_expiry_vs_placebo_alerts": 0.9588572238881763
+}

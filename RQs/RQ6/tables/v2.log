@@ -1,0 +1,22 @@
+  threshold  n_alerts  share  adj_pairs  null_mean  p_adj  P_next_given_alert  P_next_given_none
+0    L15R>2        89  24.25         20      21.66   0.73               22.47              24.91
+1    L15R>3        65  17.71         11      12.09   0.72               16.92              17.94
+2    L15R>4        38  10.35          4       3.63   0.51               10.53              10.37
+                                  group     n   b1R   b2R   b3R
+0  Expiry alerts (L15R>3), Thursday era    55  0.92  0.87  1.30
+1           Placebo-day alerts (L15R>3)   124  0.91  1.28  1.61
+2                Expiries without alert   264  0.79  0.80  0.73
+3            Placebo days without alert  1058  0.88  0.80  0.79
+{'direction': {'expiry_alert_up': 37, 'expiry_alert_n': 55, 'placebo_alert_up': 63, 'placebo_alert_n': 124, 'expiry_up_share': 67.27272727272727, 'placebo_up_share': 50.806451612903224, 'fisher_p': 0.05033499339759891}, 'placebo_runs': {'n': 124, 'runs': 55, 'null_mean': 62.896, 'p': 0.171}}
+         era    n  alertL  weekly_n  weekly  monthly_n  monthly  monthly_vs_weekly_fisher_p  thursday_expiry  placebo  placebo_n
+0  2019-2022  180   13.33       138   10.87         42    21.43                        0.12            13.33    11.71        666
+1  2023-2026  187   21.93       144   16.67         43    39.53                        0.00            22.30     8.98        512
+                                                   test       p  p_holm
+0  T1 serial dependence, smallest of 8 autocorrelations  0.1590  0.4770
+1                    T2 clustering, L15R adjacent pairs  0.7184  1.0000
+2                         T3 regime concentration, L15R  0.8712  1.0000
+3                T4 bar-pattern similarity, L15R alerts  0.0052  0.0312
+4                T5 runs of direction among L15R alerts  0.0248  0.0992
+5              S1 monthly vs weekly alert rate (Fisher)  0.0010  0.0079
+6          S2 expiry vs placebo-day alert rate (Fisher)  0.0017  0.0121
+7    S3 up-share of alerts vs other expiries (binomial)  0.0125  0.0623

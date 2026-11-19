@@ -1,0 +1,149 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{booktabs,graphicx,enumitem,xcolor,array,caption,amsmath,xspace,sansmath}
+\sansmath
+\usepackage[hidelinks]{hyperref}
+\captionsetup{font=small,labelfont=bf,labelsep=period}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlist{nosep,leftmargin=1.2em}
+\definecolor{ink2}{HTML}{52514E}
+\newcommand{\bps}{\,bps\xspace}
+\begin{document}
+{\raggedright\Large\bfseries\itshape RQ6: Do similar anomaly signatures recur across multiple expiries or across different indices?\par}
+\vspace{2pt}\hrule\vspace{6pt}
+
+\textbf{Answer for NIFTY across expiries: anomalies are a regular feature of expiry days, but they do not repeat in bursts or follow a fixed pattern. The across-indices half cannot be tested with this data.}\\
+Large late-session moves (last 15 minutes above 3 times matched days) occur on 17.7\% of expiries. One expiry having one does not make the next more likely (16.9\% after an alert against 17.9\% after none, and the same at thresholds of 2 and 4 times), and alerts are not concentrated in any regime.\\
+What does recur is structural. Expiries produce more late-session alerts than normal days (17.2\% against 10.5\% in the Thursday era), but only since 2023: in 2019--22 the rates were the same (13.3\% and 11.7\%). Monthly expiries produce about twice as many as weekly ones (30.6\% against 13.8\%), in both halves of the sample. Late moves on expiry days are also more often upward (67\% against 51\% on normal days, p = 0.05) and come in same-direction streaks. After correcting for the number of tests, the monthly-versus-weekly gap and the expiry-versus-normal gap stay significant and the direction results do not.\\
+The busier afternoons seen on alert days are not specific to expiries: late-move days on normal weekdays have them too. This describes recurrence in the index price only. It says nothing about who was trading, and recurrence alone is not evidence of manipulation. Recurrence across indices needs Bank Nifty, Sensex or similar data, which we do not have.
+
+\section*{What was tested}
+\textbf{Scope.} The proposal asks about recurrence \emph{across expiries} and \emph{across indices}. The data holds NIFTY only, so only the first half is tested. The second is left open, not answered.
+
+\textbf{Design.}
+\begin{itemize}
+\item \textbf{Sample:} 367 pre-closing-auction expiries (282 weekly, 85 monthly), Jul 2019 to Jul 2026, each matched to three normal days from the same regime, as in RQ1, RQ5 and RQ8. Closing-auction expiries are excluded because their last bar is not comparable.
+\item \textbf{Alerts:} last 15 minutes above 3 times the matched days (L15R $>3$; 65 expiries, 17.7\%, 95\% CI 14.1--21.9\%; the RQ1 report gives 15\% and the RQ8 matching rule 16.1\%, the difference being the matching rule) and whole-day volatility above 2.7 times (EVR $>2.7$; 20 expiries, 5.4\%, CI 3.6--8.3\%).
+\item \textbf{Controls are not shared.} Matching on 20-day volatility without replacement means no two expiries use the same control day. Shared controls would make neighbouring ratios move together and fake recurrence. The RQ8 matching rule (with replacement) is a sensitivity check.
+\item \textbf{Tests written down before computing any RQ6 result,} each with 5{,}000 permutation draws:
+\begin{enumerate}
+\item serial dependence: autocorrelation at lags 1--4 of the residuals from a trend plus the two RQ8 reform steps (null: shuffled residuals, overall and within calendar years);
+\item clustering of alerts in time: adjacent alert pairs and four-expiry windows with at least two alerts (null: alerts shuffled within calendar years);
+\item concentration of alerts in a few of the 12 regimes;
+\item similarity of the per-bar pattern (bars 1--3) across alert expiries;
+\item direction of the late move among alert expiries;
+\item overlap of alerts with Events-sheet dates.
+\end{enumerate}
+\item \textbf{Added after seeing the results (secondary):} the placebo-weekday baseline, weekly versus monthly, and the up/down imbalance. A second round, added after review, checks the alert threshold (2, 3 and 4 times), repeats the direction and afternoon-profile checks on placebo days, compares eras, and applies a Holm correction to eight headline tests.
+\end{itemize}
+
+\section*{Evidence}
+\textbf{1. No serial dependence.}
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrrrrrrr}
+\toprule
+ & \multicolumn{4}{c}{log L15R} & \multicolumn{4}{c}{log EVR}\\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+Lag (expiries) & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4\\
+\midrule
+Autocorrelation & $+0.02$ & $+0.01$ & $+0.04$ & $+0.07$ & $-0.03$ & $+0.03$ & $0.00$ & $-0.03$\\
+p (full shuffle) & 0.63 & 0.90 & 0.41 & 0.16 & 0.60 & 0.57 & 0.99 & 0.56\\
+p (within year) & 0.65 & 0.90 & 0.41 & 0.17 & 0.64 & 0.59 & 0.98 & 0.61\\
+\bottomrule
+\end{tabular}
+\caption{Autocorrelation of residuals (trend and reform steps removed), 367 expiries. The permutation standard deviation is about 0.05, so only values beyond roughly $\pm0.10$ would stand out.}
+\end{table}
+\begin{figure}[h!]\centering
+\includegraphics[width=0.78\linewidth]{fig3_acf.png}
+\caption{Autocorrelation of residuals by lag. Grey band: 95\% range expected if expiries were independent. Everything sits inside it.}
+\end{figure}
+The same holds for two other versions of the outcome (the move relative to its own recent size, and relative to 20-day volatility) and under the RQ8 matching rule: every p is above 0.07 (smallest 0.075).
+
+\textbf{2. Alerts do not cluster.}
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrrrrr}
+\toprule
+Alert & n & Adjacent pairs (expected) & p & Windows with $\ge2$ (expected) & p\\
+\midrule
+L15R $>3$ & 65 & 11 (12.1) & 0.72 & 56 (55.0) & 0.47\\
+EVR $>2.7$ & 20 & 1 (1.2) & 0.73 & 5 (6.3) & 0.72\\
+\bottomrule
+\end{tabular}
+\caption{Clustering of alerts in time. Expected counts come from shuffling alerts within each calendar year. There are 364 overlapping four-expiry windows.}
+\end{table}
+\begin{itemize}
+\item \textbf{Chance explains the clumps.} After an L15R alert the next expiry has an alert 16.9\% of the time (65 cases), against 17.9\% after a non-alert. For the EVR alert it is 5.0\% against 5.5\%. At a rate of 17.7\% some runs are unavoidable. The 14 bursts in the data (two or more alerts within four expiries) contain 72\% of all alerts, but the shuffled data would give the same count. The densest is January to June 2024, with 12 alerts in 24 expiries (Figure 2).
+\item \textbf{Same at other thresholds.}
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrrrr}
+\toprule
+Alert threshold & Alerts & Adjacent pairs (expected) & p & Next is an alert after an alert & after none\\
+\midrule
+L15R $>2$ & 89 (24.3\%) & 20 (21.7) & 0.73 & 22.5\% & 24.9\%\\
+L15R $>3$ & 65 (17.7\%) & 11 (12.1) & 0.72 & 16.9\% & 17.9\%\\
+L15R $>4$ & 38 (10.4\%) & 4 (3.6) & 0.51 & 10.5\% & 10.4\%\\
+\bottomrule
+\end{tabular}
+\caption{Clustering of late-session alerts at three thresholds (shuffled within calendar years, 2{,}000 draws).}
+\end{table}
+\item \textbf{No regime concentration.} The largest share is R01 (16 alerts, but it is also the largest regime, 106 expiries). A test of concentration across the 12 regimes gives p = 0.87 for L15R and 0.73 for EVR.
+\item \textbf{Events do not explain it.} Only 3 expiry days coincide with an Events-sheet date (12 Mar 2020, 25 Jan 2023, 1 Feb 2024). One carries an L15R alert and one an EVR alert. Of the 65 late-session alerts, 64 have no listed event.
+\end{itemize}
+\begin{figure}[h!]\centering
+\includegraphics[width=0.92\linewidth]{fig1_timeline.png}
+\caption{Every expiry's last-15-minute ratio to matched days (log scale). Orange: above the 3x threshold. Values near zero are floored at 0.03 for display. Alerts appear throughout 2019--2026 with no obvious pattern beyond a denser run in early 2024.}
+\end{figure}
+
+\textbf{3. What does recur: a few structural features.}
+\begin{figure}[h!]\centering
+\includegraphics[width=0.86\linewidth]{fig2_rates.png}
+\caption{Share of days with last-15-minute move above 3x matched days, with 95\% Wilson intervals. Placebo days are Mondays, Tuesdays, Wednesdays and Fridays before September 2025, matched in the same way to other normal days. Thursdays in that period were all expiries.}
+\end{figure}
+\begin{itemize}
+\item \textbf{More often than normal days, but only since 2023.} In the Thursday era the L15R alert rate on expiries is 17.2\% (55 of 319) against 10.5\% on placebo days (124 of 1{,}182; Fisher p = 0.002). The whole-day EVR alert rate is not different (5.6\% against 4.1\%, p = 0.22), so the repeated feature is about the last 15 minutes, not the whole day. Split by era, the gap is absent in 2019--22 (13.3\% of 180 expiries against 11.7\% of 666 placebo days, p = 0.61) and large from 2023 to August 2025 (22.3\% of 139 against 9.0\% of 512, p = 0.0001). So the expiry premium is not a long-standing feature: it appears as late-session moves on expiries rise while those on normal days do not.
+\item \textbf{Monthly more than weekly.} 30.6\% of monthly expiries (26 of 85) against 13.8\% of weekly (39 of 282), Fisher p = 0.001. With quarter-end and a time trend in a logistic model, the monthly effect is $+1.07$ log-odds (95\% CI 0.42 to 1.72, about 2.9 times the odds). In the continuous measure, monthly is $+0.46$ log units (CI 0.18 to 0.73). Quarter-end adds nothing once monthly is in the model ($-0.15$, p = 0.76). The gap points the same way in both eras: 21.4\% against 10.9\% in 2019--22 (p = 0.12) and 39.5\% against 16.7\% in 2023--26 (p = 0.003).
+\item \textbf{Rising over time.} The trend is $+0.11$ log units a year in L15R (p $<0.001$) and $+0.14$ log-odds a year in the alert rate (p = 0.049). This is the same trend found in RQ8.
+\item \textbf{Busier afternoons: a feature of late-move days, not of expiries.} On L15R-alert expiries the three earlier bars are busier than on other expiries: median ratios of 0.92, 0.92 and 1.27 against 0.78, 0.80 and 0.73, and 1.14 against 0.88 for the first three bars combined (Mann--Whitney p = 0.008). The pairwise similarity of the three-bar pattern across alert expiries is 0.043 against $-0.002$ expected (p = 0.005), which is distinguishable but very small. The corresponding pattern appears on normal weekdays too: in the Thursday era, bars 1 to 3 on expiry alert days have medians 0.92, 0.87 and 1.30 against 0.91, 1.28 and 1.61 on placebo-day alerts (bar-three difference p = 0.96). Days with a big late move tend to be busy afternoons whether or not it is an expiry. (The similarity for EVR alerts, 0.65, is built in, since those alerts are defined by elevated bars.)
+\item \textbf{Direction: an upward tilt specific to expiries, with streaks.} In the Thursday era 37 of 55 expiry alerts (67\%) are upward, against 63 of 124 placebo-day alerts (51\%; Fisher p = 0.050). Over the full sample, 44 of the 65 expiry alerts (68\%) are upward, against 52\% of other expiries (binomial p = 0.012). In time order the directions of the expiry alerts come in longer streaks than chance, with 21 runs against 29.5 expected (p = 0.025), while placebo-day alerts do not (55 against 62.9, p = 0.17). For expiries in general, consecutive late moves point the same way 47.5\% of the time, which is chance (p = 0.32). These direction results are single tests and do not survive the multiple-testing correction below.
+\end{itemize}
+
+\textbf{Multiple testing.} Eight headline tests (five pre-specified, three secondary) are adjusted together with Holm's method.
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrr}
+\toprule
+Test & p & Holm p\\
+\midrule
+Serial dependence (smallest of 8 autocorrelations) & 0.16 & 0.48\\
+Clustering of L15R alerts (adjacent pairs) & 0.72 & 1.00\\
+Concentration across regimes & 0.87 & 1.00\\
+Bar-pattern similarity across alert expiries & 0.005 & 0.031\\
+Runs of direction among alerts & 0.025 & 0.099\\
+Monthly versus weekly alert rate & 0.001 & 0.008\\
+Expiry versus placebo-day alert rate & 0.002 & 0.012\\
+Upward share of alerts versus other expiries & 0.013 & 0.062\\
+\bottomrule
+\end{tabular}
+\caption{Unadjusted and Holm-adjusted p-values. The bar-pattern similarity survives but is not specific to expiries (see above). The monthly and expiry-versus-normal differences survive; the direction results do not.}
+\end{table}
+
+\section*{What the evidence supports}
+\begin{itemize}
+\item Late-session alerts are a recurring but unpredictable feature of NIFTY expiries: common, more frequent than on normal days since 2023, more frequent on monthly expiries in both eras, and not bunching beyond what independent draws give.
+\item There is no sign that a particular expiry's anomaly is followed by another, or that anomalies are confined to some regimes or to known event dates.
+\item The anomaly days share only a weak profile. Busier afternoons occur on any late-move day. The tilt towards upward moves is specific to expiries but borderline, and does not survive correction for multiple tests.
+\end{itemize}
+
+\section*{Limits}
+\begin{itemize}
+\item \textbf{Across indices is untested.} We have NIFTY only. Bank Nifty, Sensex or FINNIFTY 2-hour bars would let the same tests run on each index and compare alert dates between them.
+\item \textbf{Spot-index signature only.} A ``signature'' here is the per-bar size of the index move and its direction. Open interest, strike concentration, constituent behaviour, settlement price, volume and order data are not in the data, so a signature in the proposal's fuller sense (price impact, timing, cross-market alignment, reversal, constituent concentration) cannot be compared across expiries.
+\item \textbf{Power.} Autocorrelations beyond about $\pm0.15$ would have been detected; smaller dependence cannot be ruled out. Only 20 EVR alerts exist, so the EVR results are weak.
+\item \textbf{Several tests.} Five families were pre-specified and three secondary tests were added after looking at the data. Holm-adjusted across all eight, the monthly gap (0.008), the expiry-versus-placebo gap (0.012) and the bar-pattern similarity (0.031) survive; the direction results (0.062 and 0.099) do not. The era comparison was added after review and rests on 139 to 187 expiries per era.
+\item \textbf{Thresholds and matching.} The 3x and 2.7x thresholds come from the RQ1 report. The matching rule is a reconstruction (original unrecorded). The placebo comparison uses Mon/Tue/Wed/Fri matched to other normal days, so its control pool differs slightly from the one used for Thursdays.
+\item \textbf{Recurrence is not evidence of intent.} A pattern that repeats can come from structure (expiry mechanics, index rebalancing, hedging flows) as well as from trading intended to move prices. The data cannot tell these apart.
+\item \textbf{Data note.} The Events sheet dates event E06 as 1 Feb 2022 (same as E05); the event described happened on 24 Feb 2022. This affects only the event-overlap count above and does not change any result.
+\end{itemize}
+\end{document}

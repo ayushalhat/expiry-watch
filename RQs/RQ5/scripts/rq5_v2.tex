@@ -1,0 +1,194 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{booktabs,graphicx,enumitem,xcolor,array,caption,amsmath,xspace,sansmath}
+\sansmath
+\usepackage[hidelinks]{hyperref}
+\captionsetup{font=small,labelfont=bf,labelsep=period}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlist{nosep,leftmargin=1.2em}
+\definecolor{ink2}{HTML}{52514E}
+\newcommand{\bps}{\,bps\xspace}
+\begin{document}
+{\raggedright\Large\bfseries\itshape RQ5: Are settlement-period moves followed by unusually rapid reversal after expiry?\par}
+\vspace{2pt}\hrule\vspace{6pt}
+
+\textbf{Answer: no.} Late-session moves on expiry days are not followed by faster or larger reversals than similar moves on normal days.\\
+If anything the reverse holds: after an expiry-day late move, the next open goes back against it about 43\% of the time, against 51\% after matched normal days (7.6 points less, 95\% CI $-13.1$ to $-2.1$).\\
+After large late moves (66 expiry days), expiry days drift on in the same direction by a further 36\bps by the next close, while normal days give back 12\bps.\\
+The reversal signature that price pressure or a pushed settlement would leave is therefore not visible in this data, and it cannot work as a stand-alone red flag. The continuation is modest and statistically fragile, and the data cannot say why it happens.\\
+Three checks bound the claim. The gap is largest at the next open and fades to zero within two days; after correcting for the seven horizons tested only the next open stays significant (adjusted p = 0.045). It survives matching in which no control day is used twice ($-6.1$ to $-7.6$ points). And across the 2024--26 reforms the deficit is smaller after October 2024 ($-1.5$ points, CI $-12.8$ to $+9.9$) than before ($-9.8$), but that change is not statistically distinguishable from zero (difference $+8.4$ points, CI $-4.6$ to $+21.4$).
+
+\section*{Why reversal is the right test}
+Price pressure from hedging, unwinding or a pushed settlement is temporary. It should fade once the options have expired, so the index should move back against the late move at the next open. Moves that carry information should not reverse. RQ5 asks whether reversal after expiry is faster or larger than on ordinary days.
+
+\textbf{Design.}
+\begin{itemize}
+\item \textbf{Late move $L_t$:} return of the 15:15--15:30 bar. Outcomes are the index return from the 15:30 level to the next open, next close, and 2, 3 and 5 days later.
+\item \textbf{Sample:} 1{,}724 regular pre-CAS sessions (Jun 2019--Jul 2026), of which 367 are expiries (282 weekly, 85 monthly). Weekend, Muhurat and special sessions and the 24 Feb 2021 NSE outage session are dropped. Post-CAS sessions are excluded, as in RQ2, because the last bar changes character.
+\item \textbf{Calendar and controls:} the expiry calendar was rebuilt from the CSV and reproduces the Regimes sheet exactly (371 pre-CAS expiries: 285 weekly, 86 monthly, 29 quarter-end, in all 12 pre-CAS regimes). Each expiry is matched within its regime to normal days on 20-day volatility, 5-day volatility and the prior-day move.
+\item \textbf{Controlling for drift:} the next open is higher after 66\% of normal sessions whatever the late move did. A plain ``gap against the late move'' count would mix this drift with reversal. The primary test therefore compares each expiry only with matched controls whose late move had the \emph{same direction}.
+\item \textbf{Reading the sign:} the reversal rate of an expiry minus that of its matched same-direction days. Negative means less reversal than normal.
+\end{itemize}
+
+\section*{Evidence}
+\textbf{Primary test: reversal at the next open.}
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrrrr}
+\toprule
+ & n & Reversal after expiry & Reversal after matched days & Difference (pp) & 95\% CI\\
+\midrule
+All expiries & 359 & 43.2\% & 50.8\% & $-7.6$ & $-13.1$ to $-2.1$\\
+Weekly only & 276 & 42.0\% & 51.1\% & $-9.1$ & $-15.4$ to $-2.8$\\
+Monthly & 83 & 47.0\% & 49.8\% & $-2.8$ & $-14.0$ to $+8.4$\\
+Late move down & 165 & 55.8\% & 67.7\% & $-11.9$ & $-20.2$ to $-3.7$\\
+Late move up & 194 & 32.5\% & 36.4\% & $-4.0$ & $-11.3$ to $+3.4$\\
+2019--22 & 177 & 41.2\% & 52.5\% & $-11.3$ & $-18.8$ to $-3.8$\\
+2023--26 & 182 & 45.1\% & 49.1\% & $-4.1$ & $-12.0$ to $+3.9$\\
+All, excluding 2020 & 308 & 41.9\% & 50.4\% & $-8.5$ & $-14.4$ to $-2.6$\\
+\bottomrule
+\end{tabular}
+\caption{Share of sessions whose next open moves against the late move. 8 expiries lack three same-direction matched controls and are dropped. Reversal rates differ between the up and down rows because of the overnight drift, so compare within a row, not across rows.}
+\end{table}
+
+\begin{itemize}
+\item \textbf{Size and robustness.} The gap is $-7.6$ points (p = 0.006). It stays between $-6.1$ and $-7.6$ points under five different matching rules, with every interval excluding zero. At the next close it is $-6.7$ points (CI $-12.2$ to $-1.2$, p = 0.017).
+\item \textbf{Where it sits.} It is clearest for weekly expiries, after downward late moves and in 2019--22. The monthly estimate is smaller and its interval is wide. A monthly effect the size of the weekly one ($-9$ points) would not have been detectable with 83 events (smallest detectable difference about 16 points). The data therefore show no larger effect for the bigger monthly contracts.
+\item \textbf{Calibration.} Randomly re-labelling expiry days within each regime (3{,}000 draws) gives p = 0.011 for the drift-free interaction. That coefficient is +14.4 points in the continuation direction, against a null standard deviation of 5.7.
+\end{itemize}
+
+\begin{figure}[h!]\centering
+\includegraphics[width=0.92\linewidth]{fig2_forest.png}
+\caption{Expiry minus matched same-direction days, reversal probability at the next open, with 95\% confidence intervals. Orange rows relabel non-expiry days as expiries and should sit near zero.}
+\end{figure}
+
+\textbf{Placebos.} Treating Mondays, Tuesdays, Wednesdays or Fridays as pseudo-expiries in the Thursday era gives $-1.7$, $-1.4$, $+5.6$ and $-2.9$ points, all with intervals that include zero. A generic day-of-week effect does not produce the expiry result. Before September 2025 every Thursday was an expiry, so \emph{expiry} and \emph{Thursday} cannot be separated by design. After the move to Tuesdays the sample is too small to separate them: Tuesday expiries give $-7.3$ points (n = 44, CI $-23.6$ to $+9.0$) and non-expiry Thursdays give $-10.8$ (n = 41, CI $-27.3$ to $+5.7$).
+
+\textbf{Other horizons.} The same drift-free test, repeated at each horizon, with a Holm adjustment for the seven tests.
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrrrrr}
+\toprule
+Horizon & n & After expiry & After matched days & Difference (pp, 95\% CI) & p & Holm p\\
+\midrule
+Next open & 359 & 43.2\% & 50.8\% & $-7.6$ ($-13.1$, $-2.1$) & 0.006 & 0.045\\
+Next 11:15 & 359 & 42.6\% & 49.8\% & $-7.2$ ($-12.8$, $-1.5$) & 0.014 & 0.081\\
+Next 13:15 & 359 & 44.6\% & 50.1\% & $-5.6$ ($-11.2$, $+0.1$) & 0.053 & 0.21\\
+Next close & 359 & 44.0\% & 50.7\% & $-6.7$ ($-12.2$, $-1.2$) & 0.017 & 0.084\\
++2 days & 359 & 46.8\% & 49.5\% & $-2.7$ ($-8.2$, $+2.8$) & 0.34 & 1.00\\
++3 days & 357 & 45.7\% & 47.6\% & $-1.9$ ($-7.2$, $+3.4$) & 0.47 & 1.00\\
++5 days & 356 & 47.8\% & 48.9\% & $-1.1$ ($-6.4$, $+4.2$) & 0.68 & 1.00\\
+\bottomrule
+\end{tabular}
+\caption{Reversal rate by horizon, expiry minus matched same-direction days. The sign is negative at every horizon and the size falls towards zero beyond one day.}
+\end{table}
+The deficit is a short-horizon effect. Only the next open remains significant after the adjustment, so the headline result rests on one horizon and one test.
+
+\textbf{Controls used once.} Matched controls were drawn with replacement, so one normal day can serve several expiries. A one-to-one version (each control used at most once, expiries processed in random order, 60 random orders) gives a difference of $-7.6$ points with one control per expiry (95\% CI $-14.6$ to $-0.6$, p = 0.03), $-6.1$ with two ($-12.3$ to $0.0$, p = 0.05) and $-6.8$ with three ($-12.7$ to $-0.9$, p = 0.02). The estimate moves by about one point across processing orders (with three controls, $-7.4$ to $-5.8$). The conclusion does not depend on control reuse, although the intervals are a little wider and touch zero at the upper end.
+
+\textbf{By regime and across the reforms.}
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+Regime / period & n & After expiry & After matched days & Difference (pp)\\
+\midrule
+R01 Jun 2019--Aug 2021 & 104 & 48.1\% & 51.1\% & $-3.0$\\
+R02 Aug 2021--Mar 2023 & 84 & 32.1\% & 53.3\% & $-21.1$\\
+R03 Apr 2023--May 2024 & 54 & 33.3\% & 44.5\% & $-11.1$\\
+R04 May--Sep 2024 & 22 & 40.9\% & 36.7\% & $+4.2$\\
+R05 Oct--Nov 2024 & 7 & 42.9\% & 32.8\% & $+10.1$\\
+R06 Nov 2024--Jan 2025 & 6 & 66.7\% & 50.8\% & $+15.9$\\
+R07 Jan 2025 & 5 & 80.0\% & 55.0\% & $+25.0$\\
+R08 Feb--Mar 2025 & 8 & 37.5\% & 26.5\% & $+11.0$\\
+R09 Apr--Aug 2025 & 21 & 57.1\% & 59.3\% & $-2.1$\\
+R10 Sep--Dec 2025 & 18 & 55.6\% & 62.7\% & $-7.2$\\
+R11 Dec 2025--Mar 2026 & 13 & 38.5\% & 62.5\% & $-24.0$\\
+R12 Apr--Jul 2026 & 17 & 58.8\% & 60.6\% & $-1.8$\\
+\midrule
+Before Oct 2024 & 264 & 39.4\% & 49.2\% & $-9.8$ ($-16.1$, $-3.6$)\\
+Oct 2024--Aug 2025 & 47 & 55.3\% & 48.2\% & $+7.1$ ($-9.3$, $+23.5$)\\
+Tuesday era, Sep 2025 on & 48 & 52.1\% & 61.9\% & $-9.8$ ($-25.4$, $+5.7$)\\
+\bottomrule
+\end{tabular}
+\caption{Reversal at the next open, expiry versus matched same-direction days. Regime rows have 5 to 104 expiries each (standard errors 5 to 29 points), so no individual regime is conclusive.}
+\end{table}
+\begin{itemize}
+\item \textbf{The reversal rate also rose on normal days after 2024.} After expiry it moved from 39.4\% to 53.7\% (October 2024 onwards), but on matched normal days it moved from 49.2\% to 55.1\%. Raw reversal rates therefore say little about the expiry effect: most of the rise is a market-wide change in overnight behaviour.
+\item \textbf{The expiry gap narrowed after October 2024 but not significantly.} It is $-9.8$ points before and $-1.5$ after (CI $-12.8$ to $+9.9$). The difference between the two periods is $+8.4$ points (CI $-4.6$ to $+21.4$, p = 0.20), and in the Tuesday era the gap is back at $-9.8$. The data are consistent with no change, and also with a moderate narrowing. There are too few post-reform expiries to say more.
+\end{itemize}
+
+\textbf{Relation to the ratio-based measure.} The proposal also describes a reversal ratio, RR = $-$(move after the close) / (late move). Computed from the next open, its median is $-0.69$ on expiries and $+0.34$ on normal days (Mann--Whitney p = 0.009), the same direction as the test above. We do not use it as the primary measure for three reasons. First, the late move is small (median about 7\bps) against a next-open gap of tens of basis points, so the ratio is usually large: 45\% of expiry ratios and 50\% of normal-day ratios lie beyond $\pm5$, and any clipping rule then drives the result. Second, a negative median does not mean continuation: after upward late moves only 36\% of normal days reverse at the next open, against 68\% after downward moves, because the next open is higher after about 66\% of normal sessions. A ratio below zero is therefore expected whenever late moves are mostly upward, and 54\% of expiry late moves are up. Third, the comparison that matters is against matched same-direction days, as in the primary test.
+
+\textbf{How large is the continuation?}
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+ & Next open & Next close & +5 days\\
+\midrule
+\multicolumn{4}{l}{\emph{All sessions: bps followed per 1\bps of late move (WLS, HAC s.e.)}}\\
+Normal days & $-0.44$ (0.16) & $-0.03$ (0.29) & $-0.43$ (0.71)\\
+Extra on expiry days & $+0.62$ (0.34) & $+1.16$ (0.53) & $+1.14$ (1.30)\\
+\quad p, HAC / label permutation & 0.070 / 0.099 & 0.031 / 0.070 & 0.38 / 0.41\\[3pt]
+\multicolumn{4}{l}{\emph{Large late moves (at least 2$\times$ the trailing typical size): reversal in bps, $+$ = reversal}}\\
+Expiry days (n = 66) & $-7.0$ & $-36.2$ & $-8.9$\\
+Non-expiry days (n = 157) & $+7.7$ & $+12.0$ & $+14.9$\\
+Difference, 95\% bootstrap CI & $-14.7$ ($-38.9$, $+12.5$) & $-48.2$ ($-83.8$, $-13.6$) & $-23.8$ ($-100.9$, $+58.9$)\\
+\quad permutation p & 0.26 & 0.011 & 0.58\\
+\bottomrule
+\end{tabular}
+\caption{Magnitude of the post-close move relative to the late move.}
+\end{table}
+
+\begin{itemize}
+\item On normal days roughly 0.4\bps of each 1\bps late move is given back by the next open and about nothing by the next close. On expiry days that small giveback is absent.
+\item After a late move of about 22\bps, expiry days gain a further 36\bps in the same direction by the next close. The estimate is pulled by the largest events and weakens when they are removed. Excluding the Feb--Jun 2020 window the next-close difference is $-29.0$ bps (CI $-58.9$ to $+0.2$, p = 0.077).
+\item By five days the confidence band is wide enough to include any outcome (Figure 2), so nothing can be said about persistence beyond a day or two.
+\end{itemize}
+
+\begin{figure}[h!]\centering
+\includegraphics[width=0.92\linewidth]{fig1_path.png}
+\caption{Average path after a large late move (late move at least 2$\times$ its trailing 20-day typical size), signed in the direction of the move; shaded bands are 95\% intervals. Both groups start from a late move of about 22\bps.}
+\end{figure}
+
+\textbf{The largest individual events.} Sorted by size relative to normal, the eight biggest expiry late moves split evenly: four reverse at the next open and four continue. Only 12 March 2020 overlaps a date in your Events sheet.
+\begin{table}[h!]\centering\small
+\begin{tabular}{llrrp{3.3cm}p{3.3cm}}
+\toprule
+Date & Type & Late move (bps) & Size ($\times$ typical) & Next open, in late-move direction (bps) & Next close, in late-move direction (bps)\\
+\midrule
+2024-09-12 & weekly & $-40.5$ & 8.1 & $-46.0$ & $-11.9$\\
+2023-09-28 & monthly & $+26.4$ & 7.8 & $+18.3$ & $+44.3$\\
+2024-03-28 & monthly & $+33.3$ & 6.4 & $+52.9$ & $+56.2$\\
+2024-04-18 & weekly & $+36.2$ & 5.9 & $-93.8$ & $+47.0$\\
+2025-05-08 & weekly & $-64.1$ & 5.7 & $+90.4$ & $+48.7$\\
+2024-05-30 & monthly & $+34.6$ & 5.5 & $+7.2$ & $-3.5$\\
+2020-03-12 & weekly & $+69.0$ & 5.2 & $-567.5$ & $+397.4$\\
+2025-04-30 & monthly & $-42.6$ & 5.0 & $-27.0$ & $-27.2$\\
+\bottomrule
+\end{tabular}
+\caption{Next-open and next-close moves are measured from the 15:30 level; a positive value means the index kept going in the direction of the late move.}
+\end{table}
+
+\section*{What this does and does not show}
+\begin{itemize}
+\item \textbf{No reversal flag.} The temporary-pressure signature (a late push that unwinds at the next open) is not more common after expiries. Reversal should not be used as a stand-alone feature in a spot-only MIRS.
+\item \textbf{Mild continuation.} Late expiry moves tend to persist overnight more than normal-day moves do. That fits moves that carry information or day-long trends, but the data cannot separate these from persistent hedging flows. Open interest, volume and news timing are needed for that, as in RQ2.
+\item \textbf{Consistent with RQ1/RQ2.} The earlier finding of no consistent next-day reversal stands. The sign-matched test adds that, once drift is removed, the expiry-day relationship tilts toward continuation, not reversal.
+\end{itemize}
+
+\textbf{Limits.}
+\begin{itemize}
+\item \textbf{Noise:} the next-open gap has a standard deviation of 72\bps against 12\bps for the late move, so overnight news swamps any reversal. The primary test can reliably detect differences of about 8 points and larger, so smaller effects, including in the monthly and period splits, are untested.
+\item \textbf{Settlement value:} the 15:30 spot tick is not the official settlement value, which was the VWAP of the last 30 minutes before 3 August 2026. A push confined to that window cannot be seen here.
+\item \textbf{Resolution:} the first observation after expiry is the next open, so moves reversed within minutes of the close, or inside the first 2-hour bar, are invisible.
+\item \textbf{Thursday confound:} before September 2025, expiry and Thursday coincide. Placebos on other weekdays are clean, but the Tuesday-era sample is too small to settle it.
+\item \textbf{Multiple tests and post-hoc design:} the matched same-direction reversal rate at the next open was chosen as the headline test after a first pass over the data showed that a simpler version was contaminated by overnight drift. It was not fixed in advance, and many other cuts were examined. Treat the p-values as indicative, not as pre-registered tests. Across the seven horizons only the next open survives a Holm adjustment (p = 0.045). Splits by expiry type, move direction and period are exploratory and were not tested against each other. The slope estimates are suggestive (p between 0.03 and 0.10), not conclusive.
+\item \textbf{Control reuse:} matched controls in the main test are drawn with replacement (7{,}240 control slots from 1{,}293 distinct sessions), so its standard errors are probably somewhat too small. A one-to-one version with each control used once gives $-6.1$ to $-7.6$ points, with wider intervals (above). The unmatched all-session interaction (+14.4 points, label-permutation p = 0.011) points the same way. The effect also keeps its size for larger late moves ($-8.8$ points at 3\bps or more, $-9.0$ at 6\bps or more) but loses significance as the sample shrinks.
+\item \textbf{Rebuilt inputs:} the original Expiry\_Events sheet was not available, and this section uses 1{,}724 usable sessions against 1{,}727 in the report (the 24 Feb 2021 outage session is excluded here). The rebuilt calendar matches it exactly on counts, but EVR and last-15-minute medians land within 0.06 and 0.14 of the report because the original matching rule is undocumented.
+\item \textbf{Other expiries:} other indices' expiries on the following day (e.g.\ BANKNIFTY, SENSEX) may add noise and cannot be tested here.
+\end{itemize}
+
+\vfill
+{\footnotesize\color{ink2} Data: NIFTY 2-hour spot bars, Jun 2019--Sep 2026; Regimes and Events sheets of Database.xlsx. Reproducible scripts and all tables accompany this section.}
+\end{document}

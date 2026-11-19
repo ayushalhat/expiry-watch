@@ -1,0 +1,9 @@
+test,p,p_holm
+"T1 serial dependence, smallest of 8 autocorrelations",0.159,0.477
+"T2 clustering, L15R adjacent pairs",0.7184,1.0
+"T3 regime concentration, L15R",0.8712,1.0
+"T4 bar-pattern similarity, L15R alerts",0.0052,0.0312
+T5 runs of direction among L15R alerts,0.0248,0.0992
+S1 monthly vs weekly alert rate (Fisher),0.000987401200835902,0.007899209606687215
+S2 expiry vs placebo-day alert rate (Fisher),0.0017292000152934776,0.012104400107054342
+S3 up-share of alerts vs other expiries (binomial),0.012461927921367782,0.06230963960683891

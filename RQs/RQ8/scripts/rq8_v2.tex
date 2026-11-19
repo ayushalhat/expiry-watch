@@ -1,0 +1,212 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{booktabs,graphicx,enumitem,xcolor,array,caption,amsmath,xspace,sansmath}
+\sansmath
+\usepackage[hidelinks]{hyperref}
+\captionsetup{font=small,labelfont=bf,labelsep=period}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlist{nosep,leftmargin=1.2em}
+\definecolor{ink2}{HTML}{52514E}
+\newcommand{\bps}{\,bps\xspace}
+\begin{document}
+{\raggedright\Large\bfseries\itshape RQ8: Did the 2024--26 derivatives and closing-price reforms reduce or relocate expiry-day anomalies?\par}
+\vspace{2pt}\hrule\vspace{6pt}
+
+\textbf{Answer: no clear reduction. The late-session move did not shrink, and the typical whole-day volatility did not fall. The clearest change is that the last bar now carries a larger share of expiry-day variance than on matched days. This is suggestive evidence of relocation towards the close, not an established effect.}\\
+\textbf{Size of the late-session move.} It did not fall after the October 2024 package or the September 2025 move to Tuesday expiries. It continues a rise of about 10\% a year that started before the reforms, and the estimated step changes at both dates are close to zero with wide intervals (October 2024: $-0.03$ log units, CI $-0.47$ to $+0.41$; September 2025: $+0.11$, CI $-0.27$ to $+0.49$).\\
+\textbf{Whole-day volatility.} The typical ratio is unchanged (median 0.88 before, 0.81--1.13 in the three later periods). Expiry days with whole-day volatility above 2.7 times that of matched days became rarer after October 2024 (about 6\% of expiries before, 3\% after). Whether the reforms caused this is not established: 7 of the 17 earlier cases fall in the first half of 2024, and the result weakens or disappears under other matching rules and later break dates.\\
+\textbf{Relocation.} No shift to earlier bars of the day. The extra late-session movement followed the expiry weekday to Tuesday. In share terms the picture differs: the last bar's share of the day's variance, relative to matched days, rose by 6.6 points at October 2024 (CI 0.0 to 13.2, p = 0.050; before-and-after means $+0.7$ to $+5.8$ points, p $<0.001$). The rise is not explained by fewer extreme days and comes from a larger last bar, not quieter earlier bars. It was not in the plan fixed in advance and does not survive a correction for the number of tests run.\\
+\textbf{Reversal.} The next-open reversal deficit after expiries (RQ5) is smaller after October 2024 ($-1.5$ against $-9.8$ points), but the change is not statistically distinguishable from zero. The closing auction (9 expiries so far) can only be described, not tested.
+
+\section*{What was tested}
+\textbf{Reform dates.} Dates come from the Regimes and Settlement sheets; the reforms overlap, so the data cannot separate their individual effects.
+\begin{itemize}
+\item \textbf{1 Oct 2024} (break D1): SEBI's derivatives package and the securities transaction tax increase, phased in on 20 Nov 2024, 1 Feb 2025 and 1 Apr 2025.
+\item \textbf{1 Sep 2025} (break D2): expiry moves from Thursday to Tuesday; intraday position-limit monitoring.
+\item \textbf{3 Aug 2026} (CAS): closing auction session. Only 9 expiries so far, so descriptive only.
+\end{itemize}
+
+\textbf{Design.}
+\begin{itemize}
+\item \textbf{Sample:} 376 expiries matched to normal days from Jul 2019 to Sep 2026: 271 before October 2024, 96 from October 2024 to 2 August 2026 (26, 22 and 48 in the three periods used below), 9 under the CAS. The calendar is the one rebuilt for RQ1 and RQ5 (it matches the Regimes sheet exactly). Four early expiries lack the 20-day history needed for matching and are dropped. The last row of the data (30 Sep 2026) is incomplete and unused.
+\item \textbf{Outcomes, as in RQ1/RQ2.} Each expiry is compared with three matched normal days from the same regime. \emph{EVR} is the expiry's whole-day volatility divided by the controls' mean. \emph{L15R} is the 15:15--15:30 absolute move divided by the controls' mean. Alerts are L15R $>3$ and EVR $>2.7$, the thresholds of the RQ1 report. Per-bar ratios use each of the four 2-hour bars.
+\item \textbf{Matching rule:} Mahalanobis distance on log 20-day and 5-day volatility, three controls, with replacement. This rule gave the closest tie-out to the Regimes sheet's mean EVR (correlation 0.96 across regimes). The original rule is not recorded, so these numbers differ slightly from RQ1.
+\item \textbf{Primary tests, written down before any RQ8 outcome was computed:} (i) an interrupted time series on log L15R and log EVR with a linear pre-trend and a level shift at each break (slope changes only as a sensitivity), HAC standard errors; (ii) 26 expiries either side of each break; (iii) both for the alert indicator L15R $>3$. The EVR $>2.7$ alert, the median regressions, the placebo and alternative-date checks, the last-bar variance share, the whole-day absolute return, the tail-sensitive bar ratios and the reversal comparison were added after seeing results and are labelled as secondary.
+\item \textbf{Why a trend model:} L15R was already rising before the reforms, so a plain before-after comparison would credit the reforms with a pre-existing trend.
+\end{itemize}
+
+\section*{Evidence}
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrrrr}
+\toprule
+Period & n & EVR median (95\% CI) & L15R median (95\% CI) & L15R $>3$ & EVR $>2.7$\\
+\midrule
+Before Oct 2024 & 271 & 0.88 (0.78--1.00) & 0.93 (0.80--1.06) & 14.8\% & 6.3\%\\
+Oct 2024--Mar 2025 & 26 & 0.81 (0.60--1.06) & 1.04 (0.63--1.59) & 15.4\% & 0.0\%\\
+Apr--Aug 2025 & 22 & 1.13 (0.71--1.70) & 1.26 (0.65--3.04) & 31.8\% & 4.5\%\\
+Tuesday era, Sep 2025--Jul 2026 & 48 & 0.89 (0.68--1.17) & 1.43 (1.00--1.92) & 16.7\% & 4.2\%\\
+CAS, from Aug 2026 & 9 & 1.17 (0.57--1.86) & not comparable & -- & 11.1\%\\
+\bottomrule
+\end{tabular}
+\caption{Profile by period. Medians with bootstrap intervals; alert shares are percentages of expiries. L15R is not comparable under the CAS, whose last bar contains the auction.}
+\end{table}
+
+A naive comparison of October 2024--July 2026 with the earlier years shows a higher L15R (ratio 1.32, permutation p = 0.025) but no change in EVR (ratio 1.06, p = 0.70), and no significant change in either alert rate (L15R $>3$: $+5.0$ points, p = 0.26; EVR $>2.7$: $-3.1$ points, p = 0.30). The L15R difference is a continuation of the trend, as the next table and figure show.
+
+\begin{figure}[h!]\centering
+\includegraphics[width=0.92\linewidth]{fig1_rolling.png}
+\caption{Rolling median over the latest 26 expiries of the expiry-to-matched-day ratio (CAS expiries excluded). Dashed line: ratio of one, i.e.\ no expiry effect. Vertical lines: October 2024 package and September 2025 Tuesday expiry. The late-session ratio peaks in spring 2024, before the reforms, falls back to about 0.7 by early 2025 and rises again afterwards.}
+\end{figure}
+
+\textbf{Primary test: interrupted time series.} Level shifts at the reform dates, after allowing a pre-reform trend (367 expiries; the trend is per year).
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrr}
+\toprule
+Outcome & Trend per year & Shift Oct 2024 (95\% CI, p) & Shift Sep 2025 (95\% CI, p)\\
+\midrule
+log L15R & $+0.094$ (p = 0.038) & $-0.03$ ($-0.47$ to $+0.41$, 0.89) & $+0.11$ ($-0.27$ to $+0.49$, 0.57)\\
+log EVR & $+0.045$ (p = 0.15) & $-0.24$ ($-0.53$ to $+0.05$, 0.10) & $-0.03$ ($-0.30$ to $+0.24$, 0.81)\\
+L15R $>3$ (pp, linear prob.) & $+2.4$ (p = 0.095) & $+0.7$ ($-15.5$ to $+16.9$, 0.93) & $-8.5$ ($-25.0$ to $+8.1$, 0.32)\\
+EVR $>2.7$ (pp) & $+2.5$ (p = 0.039) & $-11.9$ ($-21.8$ to $-2.1$, 0.018) & $-0.2$ ($-7.5$ to $+7.0$, 0.95)\\
+\bottomrule
+\end{tabular}
+\caption{Coefficients of the interrupted time series (levels specification), HAC standard errors. Log outcomes are in natural-log units; alert rows are linear probability models in percentage points.}
+\end{table}
+\begin{itemize}
+\item \textbf{Late-session anomaly.} A trend of $+0.094$ log units a year is a rise of about 10\% a year in the typical L15R. The reforms left no step on top of it. Median regressions agree (shifts $+0.06$ and $+0.13$, p $>0.6$).
+\item \textbf{Whole-day volatility.} The OLS step of $-0.24$ at October 2024 is not significant (p = 0.10), and the median regression gives $+0.08$ (CI $-0.28$ to $+0.45$). The mean step therefore reflects fewer extreme days, not a lower typical day.
+\item \textbf{Extreme whole-day spikes.} The only step with p $<0.05$. See the robustness section before reading anything into it.
+\item \textbf{Local windows.} The 26 expiries before and after each break give the same picture: L15R shifts of $+0.14$ (p = 0.59) at October 2024 and $-0.17$ (p = 0.59) at September 2025; EVR shifts of $-0.20$ (p = 0.52) and $-0.26$ (p = 0.40). The share with L15R $>3$ fell from 26.9\% to 15.4\% (p = 0.50) at October 2024 and from 26.9\% to 7.7\% (p = 0.14) at September 2025. Neither is significant.
+\end{itemize}
+
+\textbf{Is the break date special?} Running the same 26-vs-26 comparison at every possible date gives 316 comparisons. At October 2024, 71\% of all dates show an L15R change at least as large, 55\% an EVR change and 43\% an L15R-alert change. At September 2025 the shares are 60\%, 36\% and 10\%. Nothing at either date is unusual for L15R or EVR.
+
+\textbf{Regime by regime.}
+\begin{table}[h!]\centering\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Regime & n & EVR mean & Sheet mean & EVR median & L15R median & L15R $>3$ & EVR $>2.7$\\
+\midrule
+R01 Jun 2019--Aug 2021 & 106 & 1.07 & 1.08 & 0.90 & 0.87 & 11.3\% & 2.8\%\\
+R02 Aug 2021--Mar 2023 & 87 & 1.14 & 1.13 & 0.80 & 0.80 & 14.9\% & 5.7\%\\
+R03 Apr 2023--May 2024 & 56 & 1.29 & 1.25 & 0.99 & 1.67 & 17.9\% & 10.7\%\\
+R04 May--Sep 2024 & 22 & 1.43 & 1.39 & 0.88 & 0.80 & 22.7\% & 13.6\%\\
+R05 Oct--Nov 2024 & 7 & 0.80 & 0.98 & 0.60 & 0.62 & 0.0\% & 0.0\%\\
+R06 Nov 2024--Jan 2025 & 6 & 1.00 & 1.07 & 0.89 & 0.70 & 16.7\% & 0.0\%\\
+R07 Jan 2025 & 5 & 0.84 & 0.98 & 0.86 & 1.77 & 40.0\% & 0.0\%\\
+R08 Feb--Mar 2025 & 8 & 0.91 & 0.94 & 0.81 & 1.47 & 12.5\% & 0.0\%\\
+R09 Apr--Aug 2025 & 22 & 1.28 & 1.22 & 1.13 & 1.26 & 31.8\% & 4.5\%\\
+R10 Sep--Dec 2025 & 18 & 0.92 & 0.95 & 0.84 & 1.34 & 5.6\% & 0.0\%\\
+R11 Dec 2025--Mar 2026 & 13 & 1.16 & 1.13 & 0.68 & 1.40 & 23.1\% & 15.4\%\\
+R12 Apr--Jul 2026 & 17 & 1.00 & 0.99 & 0.98 & 1.75 & 23.5\% & 0.0\%\\
+R13 Aug 2026 on (CAS) & 9 & 1.21 & 1.24 & 1.17 & -- & -- & 11.1\%\\
+\bottomrule
+\end{tabular}
+\caption{All 13 regimes. ``Sheet mean'' is the Mean\_EVR column of the Regimes sheet; the matched-control EVR used here reproduces it (correlation 0.96, mean absolute difference 0.05). The L15R columns are omitted for the closing-auction regime, whose last bar is not comparable. Regimes with 5 to 8 expiries (R05 to R08) are too small to read individually.}
+\end{table}
+
+The regime pattern shows no clean break at the reforms. Late-session alert rates run from 6\% to 40\% across regimes with no pattern around the reforms. The lowest are R05 (0 of 7), R10 (5.6\%) and the closing-auction regime (0 of 9, not comparable); the highest are R07 (40\%, 5 expiries) and R09 (31.8\%).
+
+\textbf{Pre-trend.} A trend in the last-bar measure before the reform would make a before-and-after comparison misleading.
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+Half-year & n & L15R median & EVR median & Last-bar variance share gap (pp)\\
+\midrule
+2022 H2 & 26 & 0.79 & 0.78 & $-1.9$\\
+2023 H1 & 26 & 1.11 & 0.81 & $+1.9$\\
+2023 H2 & 26 & 1.29 & 1.02 & $+1.7$\\
+2024 H1 & 26 & 1.73 & 1.06 & $+3.5$\\
+2024 H2 (to 30 Sep) & 13 & 0.70 & 0.76 & $-3.6$\\
+\bottomrule
+\end{tabular}
+\caption{Expiry-to-matched-day measures in the half-years before the reform. The share gap is the expiry's last-bar share of daily variance minus that of its matched days.}
+\end{table}
+Over all pre-reform expiries the trend in log L15R is $+0.087$ a year (95\% CI $-0.002$ to $+0.176$, p = 0.055), against $+0.042$ ($-0.020$ to $+0.105$) for log EVR and $+0.17$ points ($-0.79$ to $+1.14$) for the share gap. The late-session ratio rises from 2022 to a peak in the first half of 2024 and falls back just before the reform. The share gap rises in step with it, and does not show a significant trend.
+
+\section*{Did the anomaly move somewhere else?}
+\begin{figure}[h!]\centering
+\includegraphics[width=0.86\linewidth]{fig2_bars.png}
+\caption{Median ratio of expiry to matched-day absolute move in each 2-hour bar, with 95\% bootstrap intervals, before and after October 2024. A shift of the anomaly to earlier times would show as a rise in the first three bars.}
+\end{figure}
+\begin{itemize}
+\item \textbf{Intraday timing: no.} In the three earlier bars the post-reform medians (0.89, 0.74, 0.87) are within noise of the earlier ones (0.87, 0.84, 0.82), with permutation p of 0.88, 0.46 and 0.68. Only the last bar differs (0.93 to 1.24, p = 0.029), which is the trend. In the interrupted time series no bar has a significant step at either date (smallest p = 0.09, the 13:15--15:15 bar at October 2024, where the step is \emph{negative}: $-0.55$, CI $-1.19$ to $+0.08$).
+\item \textbf{Weekly versus monthly: no.} Monthly expiries carry most of the late-session rise (median L15R 1.11 before, 2.40 after; 63 before, 22 after). Weekly ones move from 0.91 to 1.00 (208 before, 74 after). Interrupted time series on the two groups show no significant step in log L15R at either date (weekly $-0.03$ and $+0.04$; monthly $-0.02$ and $+0.34$, p = 0.13). The monthly L15R $>3$ indicator shows a September 2025 step of $-23.5$ points (p = 0.004), but the monthly log-L15R estimate points the other way and there are only 22 post-reform monthly expiries. We treat this as noise from a sub-group test.
+\item \textbf{Weekday: yes, it followed the expiry day.} Last-bar size relative to the index's own recent typical last-bar size (z) was higher on Thursdays than on other days in the Thursday era (+0.17, CI 0.03 to 0.31). In the Tuesday era it is higher on Tuesdays (+0.46, CI 0.14 to 0.78) and no longer on Thursdays ($-0.07$, CI $-0.32$ to $+0.19$). The Tuesday gain is +0.55 (CI 0.22 to 0.89) against a Thursday change of $-0.24$ (CI $-0.54$ to $+0.05$); intervals are week-cluster bootstrap. Whole-day relative volatility shows no expiry-weekday effect in either era (all intervals include zero). These are means, so a few large days matter: the Tuesday era has only 44 Tuesday sessions.
+\end{itemize}
+
+\textbf{Share of the day's variance in the last bar.} This is the metric used in RQ1 (the last bar's squared return as a share of the sum over the four bars). Across the 367 pre-CAS expiries it averages 6.0\% against 4.0\% on matched days (weekly 5.0\% against 4.0\%, monthly 9.5\% against 4.3\%), in line with the RQ1 figures of 5\% weekly and 6\% overall.
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrr}
+\toprule
+Term (gap in percentage points, expiry minus matched days) & Estimate & 95\% CI & p\\
+\midrule
+Trend, per year & $+0.20$ & $-0.76$ to $+1.16$ & 0.69\\
+Step at October 2024 & $+6.60$ & $0.00$ to $+13.21$ & 0.050\\
+Step at September 2025 & $-4.35$ & $-11.03$ to $+2.34$ & 0.20\\
+\bottomrule
+\end{tabular}
+\caption{Interrupted time series of the last-bar variance share gap, same design as Table 2 (367 expiries, HAC standard errors).}
+\end{table}
+\begin{itemize}
+\item \textbf{A step, not a trend.} The mean gap rises from $+0.7$ points before October 2024 to $+5.8$ after (Mann--Whitney p $<0.001$). Medians go from $-0.8$ to $+0.8$ and a 10\%-trimmed mean from $-0.7$ to $+2.1$, so tail days contribute a good part of the mean change. The pre-reform trend is flat (above).
+\item \textbf{Not explained by fewer extreme days.} Dropping expiries with EVR above 2.7 leaves the rise intact (mean gap $+1.1$ to $+6.0$, p $<0.001$). The ratio of the first three bars to matched days is unchanged (median 0.88 before, 0.87 after, p = 0.21), so the rise comes from a larger last bar, not quieter earlier ones.
+\item \textbf{Reading.} The last bar takes a larger slice of the day on expiries than before, which is a form of relocation towards the close. The evidence is moderate: the step has p = 0.050, the effect is concentrated in tail days, the share gap was added after the plan was fixed, and the September 2025 step goes the other way (not significant). The size of the late-session move itself (L15R) shows the earlier-mentioned trend and no step.
+\end{itemize}
+
+\textbf{Tail-sensitive check on the bars.} The median ratios above can miss changes in the tails. The ratio of mean expiry move to mean matched-day move gives:
+\begin{table}[h!]\centering\small
+\begin{tabular}{lrrr}
+\toprule
+Bar & Before Oct 2024 (95\% CI) & After (95\% CI) & Change (95\% CI)\\
+\midrule
+09:15--11:15 & 1.07 (0.94--1.21) & 0.92 (0.76--1.12) & $-0.15$ ($-0.37$ to $+0.09$)\\
+11:15--13:15 & 0.98 (0.85--1.11) & 1.09 (0.85--1.37) & $+0.11$ ($-0.17$ to $+0.41$)\\
+13:15--15:15 & 0.98 (0.85--1.12) & 0.92 (0.75--1.12) & $-0.06$ ($-0.29$ to $+0.17$)\\
+15:15--15:30 & 1.14 (0.99--1.31) & 1.53 (1.22--1.90) & $+0.39$ ($+0.05$ to $+0.82$)\\
+\bottomrule
+\end{tabular}
+\caption{Ratio of means by bar, with bootstrap intervals (3{,}000 draws over expiries). ``After'' is October 2024 to July 2026 (96 expiries).}
+\end{table}
+The first bar does fall (1.07 to 0.92), but the interval includes no change. The last bar rises, and by the mean measure the interval just excludes zero. This is consistent with the trend found above, and large single days such as 8 May 2025 move a mean ratio a lot.
+
+\textbf{Whole-day absolute return.} The size of the close-to-close move on expiries relative to matched days shows no step (October 2024: $-0.02$ log units, p = 0.95; September 2025: $-0.02$, p = 0.92; trend $-0.01$ a year).
+
+\textbf{Reversal after expiry across the reforms.} Using the matched same-direction test of RQ5, the reversal deficit after expiry (expiry minus matched days, next open) is $-9.8$ points before October 2024 (n = 264, CI $-16.1$ to $-3.6$) and $-1.5$ after (n = 95, CI $-12.8$ to $+9.9$). By sub-period it is $+7.1$ points for October 2024 to August 2025 and $-9.8$ for the Tuesday era. The difference between before and after is $+8.4$ points (CI $-4.6$ to $+21.4$, p = 0.20). Raw reversal rates after expiries rose from 39\% to 54\%, but matched normal days rose from 49\% to 55\%, so most of the rise is market-wide and not an expiry effect. The data are compatible with no change and with a moderate narrowing of the deficit.
+
+\textbf{Closing auction (9 expiries since 3 Aug 2026), descriptive only.} The expiry's median EVR is 1.17 and the median EVR using only the first three bars (comparable across the change in the last bar) is 1.13, against 0.88 in both the Tuesday era and before 2024. The third bar ratio is 1.17 against 0.93 and 0.82. In 97.5\% of post-CAS sessions the last bar is a single directional jump, with a median size of 14.3\bps on the 9 expiry days and 12.4\bps on 32 other days, against 5.7\bps on normal days before the CAS. The jump is now a feature of every day, not specific to expiries, and nine events cannot tell a modest expiry effect from none. The CAS cannot yet be said to have reduced or moved anything.
+
+\section*{How robust is the extreme-volatility result?}
+\begin{figure}[h!]\centering
+\includegraphics[width=0.92\linewidth]{fig3_alerts.png}
+\caption{Expiries with whole-day volatility above 2.7 times that of matched days, by half-year (count over number of expiries). Solid line: October 2024; dashed line: September 2025.}
+\end{figure}
+\begin{itemize}
+\item \textbf{Pooled counts.} 17 of 271 expiries (6.3\%) before the reforms, 3 of 96 (3.1\%) after. A pre-reform cluster of 7 in the first half of 2024 (26.9\% of that half's expiries) drives the contrast with the 26 expiries just before the break.
+\item \textbf{Matching rule.} The October 2024 step is $-11.9$ points (p = 0.018) under the primary rule, $-9.1$ (p = 0.006) with 5-day volatility and range, $-6.5$ (p = 0.11) with the RQ5 rule and $-4.8$ (p = 0.30) with 20-day volatility alone and no replacement. The sign is stable, the strength is not.
+\item \textbf{Break date.} Moving the break to 20 Nov 2024 gives $-10.3$ points (p = 0.037), to 1 Feb 2025 $-7.7$ (p = 0.13) and to 1 Apr 2025 $-5.4$ (p = 0.33). Starting the pre-period in 2022 gives $-14.9$ (p = 0.051).
+\item \textbf{Placebo breaks.} Among 18 placebo break dates inside the pre-reform years, the real step in the EVR alert is larger in size than all but one (share as extreme: 5.6\%), and the real step in log EVR is larger than all 18. For the late-session metrics it is not unusual (94\% of placebos are as extreme).
+\item \textbf{Local window and scan.} The window comparison (19.2\% to 0.0\%) has p = 0.051 and 8.9\% of all 316 break dates give a change at least as large.
+\item \textbf{Reading.} The sign agrees across every check and the effect is not explained by market events (only one of the 17 earlier cases overlaps an Events-sheet event). It is nevertheless a secondary outcome on rare events, partly a return from an unusual 2024 cluster, and the p-value depends on the matching rule. The market was also calmer after October 2024 (daily close-to-close SD 78--86\bps in the three periods against 120\bps before, which includes 2020). We would call it suggestive, not shown.
+\end{itemize}
+
+\textbf{What the late-session alerts look like since the reforms.} 19 of the 96 expiries after October 2024 exceed L15R $>3$ (against 40 of 271 before) and 3 exceed EVR $>2.7$; one meets both (2 Mar 2026). None overlaps an Events-sheet event. The largest is 8 May 2025, a 64\bps move in the last bar (43.7 times the controls). Alerts remain common after the reforms, so they cannot be taken as eliminated.
+
+\section*{Statistical power}
+With 96 post-reform expiries, the smallest step the interrupted time series could reliably detect (2.8 standard errors, about 80\% power) is 0.41 log units in EVR (a factor of 1.5), 0.63 in L15R (a factor of 1.9), 23 points in the L15R alert rate and 14 points in the EVR alert rate, at October 2024. A reform effect of 20\% on typical late-session size would not have been visible. The data rule out large effects only: they are consistent with no change, a moderate reduction, or a moderate increase.
+
+\textbf{Multiple testing.} The six primary level-shift tests (log L15R, log EVR and the L15R alert at the two breaks) have unadjusted p-values from 0.10 to 0.93. After a Holm adjustment the smallest is 0.61. Counting the EVR alert as a seventh and eighth test, its October 2024 p-value of 0.018 becomes 0.14. The variance-share step (p = 0.050) would not survive an adjustment either. No reform effect is established at the usual standards.
+
+\section*{Limits}
+\begin{itemize}
+\item \textbf{Spot-index proxy.} The metrics are index-spot movements in 2-hour bars. The reforms targeted derivatives activity (position limits, intraday monitoring, expiry rules, STT), which appears in volume, open interest, option prices and settlement behaviour that this data does not contain. ``No change in the index'' does not mean ``no change in derivatives anomalies''. The MIRS score cannot be computed. Within the last 15 minutes, timing is unobservable because it is one bar.
+\item \textbf{Reforms are bundled.} The October 2024 package, STT increase, lot-size changes (the Regimes sheet shows the lot moving between 25, 75 and 65), weekday change and phased roll-out overlap. No effect can be assigned to one rule. Market volatility also changed, and the matching adjusts only for recent volatility.
+\item \textbf{Trend assumption.} The model assumes a linear pre-trend. L15R rose sharply into spring 2024 and fell back, so the linear trend is a simplification. Allowing slope changes gives offsetting level and slope terms (for EVR, step $-0.56$ and slope change $+0.71$ per year) that cannot be read separately.
+\item \textbf{Few post-reform expiries and multiple tests.} 96 expiries after October 2024, 48 in the Tuesday era, 9 under the CAS. The interrupted-time-series table has about 100 coefficients, so some will be significant by chance; we report the ones tied to the primary plan and flag the rest.
+\item \textbf{Matching rule.} The sheet's original rule is unrecorded; the primary rule here reproduces its regime means with a mean absolute error of 0.05 in EVR. Results shift slightly under other rules (shown above).
+\item \textbf{Data note.} The Events sheet dates event E06 as 1 Feb 2022 although the event described is 24 Feb 2022, which looks like a typing error. It affects only the event-overlap flag used in this section. The original Expiry\_Events sheet is not in the data we were given.
+\end{itemize}
+\end{document}

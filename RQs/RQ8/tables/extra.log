@@ -1,0 +1,95 @@
+                   outcome term   coef     se      p     lo     hi
+0          bar 09:15-11:15    t  0.059  0.055  0.289 -0.050  0.167
+1          bar 09:15-11:15   D1 -0.320  0.248  0.196 -0.806  0.166
+2          bar 09:15-11:15   D2  0.104  0.262  0.690 -0.410  0.619
+3          bar 11:15-13:15    t -0.011  0.050  0.821 -0.110  0.087
+4          bar 11:15-13:15   D1 -0.134  0.226  0.552 -0.576  0.308
+5          bar 11:15-13:15   D2  0.207  0.202  0.306 -0.189  0.602
+6          bar 13:15-15:15    t  0.128  0.057  0.025  0.016  0.239
+7          bar 13:15-15:15   D1 -0.554  0.325  0.089 -1.191  0.084
+8          bar 13:15-15:15   D2  0.050  0.305  0.869 -0.548  0.649
+9   bar 15:15-15:30 (L15R)    t  0.094  0.045  0.038  0.005  0.183
+10  bar 15:15-15:30 (L15R)   D1 -0.032  0.225  0.886 -0.473  0.409
+11  bar 15:15-15:30 (L15R)   D2  0.110  0.193  0.567 -0.268  0.489
+      sample              outcome term   coef     se      p
+38    weekly              log EVR    t  0.029  0.035  0.408
+39    weekly              log EVR   D1 -0.180  0.157  0.252
+40    weekly              log EVR   D2  0.032  0.151  0.830
+46    weekly             log L15R    t  0.086  0.056  0.126
+47    weekly             log L15R   D1 -0.032  0.264  0.903
+48    weekly             log L15R   D2  0.043  0.207  0.836
+54    weekly   alert L15R>3 (LPM)    t  0.013  0.016  0.415
+55    weekly   alert L15R>3 (LPM)   D1  0.033  0.087  0.706
+56    weekly   alert L15R>3 (LPM)   D2 -0.039  0.084  0.639
+62    weekly  alert EVR>2.7 (LPM)    t  0.026  0.015  0.085
+63    weekly  alert EVR>2.7 (LPM)   D1 -0.118  0.060  0.050
+64    weekly  alert EVR>2.7 (LPM)   D2  0.004  0.049  0.940
+76   monthly              log EVR    t  0.097  0.036  0.006
+77   monthly              log EVR   D1 -0.436  0.292  0.135
+78   monthly              log EVR   D2 -0.249  0.282  0.376
+84   monthly             log L15R    t  0.119  0.070  0.090
+85   monthly             log L15R   D1 -0.015  0.317  0.963
+86   monthly             log L15R   D2  0.342  0.228  0.134
+92   monthly   alert L15R>3 (LPM)    t  0.058  0.026  0.023
+93   monthly   alert L15R>3 (LPM)   D1 -0.070  0.127  0.581
+94   monthly   alert L15R>3 (LPM)   D2 -0.235  0.083  0.004
+100  monthly  alert EVR>2.7 (LPM)    t  0.025  0.013  0.049
+101  monthly  alert EVR>2.7 (LPM)   D1 -0.125  0.057  0.028
+102  monthly  alert EVR>2.7 (LPM)   D2 -0.023  0.012  0.064
+{'scan_D1_alertE': {'value': -19.230769230769234, 'share_as_extreme': 0.08860759493670886, 'n': 316, 'min_dAE': -23.076923076923077, 'date': '2024-10-03'}, 'scan_D2_alertE': {'value': 0.0, 'share_as_extreme': 1.0}, 'fake_lE': {'actual_D1': -0.2410866121890874, 'n_fake': 18, 'sd_fake': 0.09661038164604893, 'share_fake_as_extreme': 0.0, 'fake_min': -0.13063665185615653, 'fake_max': 0.21618856613124945}, 'fake_lL': {'actual_D1': -0.03217890212465933, 'n_fake': 18, 'sd_fake': 0.35127751863784235, 'share_fake_as_extreme': 0.9444444444444444, 'fake_min': -0.48401267513580915, 'fake_max': 0.5537154940113028}, 'fake_alert_E': {'actual_D1': -0.11936776762366277, 'n_fake': 18, 'sd_fake': 0.06747549498937737, 'share_fake_as_extreme': 0.05555555555555555, 'fake_min': -0.10236171840201243, 'fake_max': 0.1467407697487041}, 'fake_alert_L': {'actual_D1': 0.007451792175669769, 'n_fake': 18, 'sd_fake': 0.060289607884369205, 'share_fake_as_extreme': 1.0, 'fake_min': -0.10572688743182268, 'fake_max': 0.0900970127249193}}
+                                         D1_date        outcome     D1     se      p     D2   D2_p
+0   2024-10-01 package announced + STT (primary)        log EVR -0.241  0.147  0.101 -0.033  0.812
+1   2024-10-01 package announced + STT (primary)       log L15R -0.032  0.225  0.886  0.110  0.567
+2   2024-10-01 package announced + STT (primary)  alert EVR>2.7 -0.119  0.050  0.018 -0.002  0.949
+3   2024-10-01 package announced + STT (primary)   alert L15R>3  0.007  0.083  0.928 -0.085  0.316
+4                   2024-11-20 phase 1 effective        log EVR -0.091  0.154  0.553 -0.088  0.529
+5                   2024-11-20 phase 1 effective       log L15R  0.169  0.226  0.455  0.015  0.939
+6                   2024-11-20 phase 1 effective  alert EVR>2.7 -0.103  0.049  0.037 -0.001  0.976
+7                   2024-11-20 phase 1 effective   alert L15R>3  0.071  0.087  0.414 -0.116  0.189
+8                             2025-02-01 phase 2        log EVR  0.020  0.143  0.886 -0.144  0.286
+9                             2025-02-01 phase 2       log L15R  0.191  0.246  0.439 -0.020  0.930
+10                            2025-02-01 phase 2  alert EVR>2.7 -0.077  0.051  0.130 -0.004  0.923
+11                            2025-02-01 phase 2   alert L15R>3  0.055  0.097  0.570 -0.115  0.249
+12                   2025-04-01 phase 3 complete        log EVR  0.096  0.139  0.490 -0.200  0.145
+13                   2025-04-01 phase 3 complete       log L15R  0.191  0.307  0.535 -0.038  0.895
+14                   2025-04-01 phase 3 complete  alert EVR>2.7 -0.054  0.055  0.328 -0.013  0.794
+15                   2025-04-01 phase 3 complete   alert L15R>3  0.115  0.101  0.254 -0.163  0.114
+         outcome    n  trend     D1  D1_se   D1_p     D2   D2_p
+0        log EVR  239  0.032 -0.237  0.195  0.222 -0.020  0.893
+1       log L15R  239  0.202 -0.256  0.282  0.365  0.011  0.957
+2  alert EVR>2.7  239  0.039 -0.149  0.076  0.051 -0.015  0.744
+3   alert L15R>3  239  0.044 -0.034  0.101  0.736 -0.103  0.248
+                              spec  outcome     D1      p     D2   D2_p
+0              primary: vol20+vol5  alert_E -0.119  0.018 -0.002  0.949
+1              primary: vol20+vol5       lE -0.241  0.101 -0.033  0.812
+2  RQ5 rule: vol20+vol5+|prev day|  alert_E -0.065  0.113  0.035  0.254
+3  RQ5 rule: vol20+vol5+|prev day|       lE -0.242  0.070 -0.045  0.739
+4                      vol5+range5  alert_E -0.091  0.006  0.007  0.742
+5                      vol5+range5       lE -0.172  0.206 -0.082  0.555
+6       vol20 only, no replacement  alert_E -0.048  0.303 -0.037  0.375
+7       vol20 only, no replacement       lE -0.211  0.141 -0.052  0.687
+               type regime   EVR   L15R   absL  alert_L  alert_E  event_overlap
+date                                                                           
+2024-11-28  monthly    R06  1.48   3.12  18.46        1        0          False
+2025-01-16   weekly    R07  0.72   3.35  18.34        1        0          False
+2025-01-30  monthly    R07  1.01   5.09  19.32        1        0          False
+2025-02-06   weekly    R08  1.58   4.72  13.49        1        0          False
+2025-04-30  monthly    R09  1.01   4.67  42.62        1        0          False
+2025-05-08   weekly    R09  1.40  43.73  64.13        1        0          False
+2025-05-15   weekly    R09  3.22   1.01   6.99        0        1          False
+2025-05-29  monthly    R09  1.85   4.85  12.21        1        0          False
+2025-06-05   weekly    R09  0.33   4.87   3.41        1        0          False
+2025-06-12   weekly    R09  1.66   3.17  12.18        1        0          False
+2025-07-24   weekly    R09  1.08   3.12   7.06        1        0          False
+2025-08-07   weekly    R09  1.75   5.60  12.68        1        0          False
+2025-12-02   weekly    R10  0.47   4.82   8.16        1        0          False
+2026-01-27  monthly    R11  0.67   5.61  26.82        1        0          False
+2026-02-03   weekly    R11  3.19   1.40   3.34        0        1          False
+2026-03-02   weekly    R11  2.99   5.08  21.97        1        1          False
+2026-03-24   weekly    R11  1.22   3.62  24.71        1        0          False
+2026-05-12   weekly    R12  1.79  13.92  31.44        1        0          False
+2026-06-23   weekly    R12  1.24   3.58  14.38        1        0          False
+2026-06-30  monthly    R12  1.09   6.99  22.67        1        0          False
+2026-07-07   weekly    R12  0.60   4.57  18.38        1        0          False
+EVR>2.7 expiries before D1: 17 | by year: {2020: 3, 2022: 5, 2023: 1, 2024: 8} | share with event overlap: 0.058823529411764705
+{'mde_lE': {'D1': 0.4114274851769751, 'D2': 0.38706484871976454}, 'mde_lL': {'D1': 0.6298155618884821, 'D2': 0.5403626328042649}, 'mde_alert_L': {'D1': 0.23141283315618705, 'D2': 0.23627892747306625}, 'mde_alert_E': {'D1': 0.14075310337454133, 'D2': 0.10319330671156281}}

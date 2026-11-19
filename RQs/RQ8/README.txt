@@ -1,0 +1,1 @@
+RQ8 v2 additions: rq8_v2.py (pre-trend, last-bar variance share, tail-sensitive bar ratios, absolute return ITS, Holm). Outputs: tables/v2_*.csv, v2.json, v2.log. Original plan: docstring of rq8lib.py. Main text: rq8_v2.tex (+ regime_table.tex).

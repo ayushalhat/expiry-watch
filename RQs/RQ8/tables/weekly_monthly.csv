@@ -1,0 +1,5 @@
+type,grp,n,EVR_med,L15R_med,alertL,absL_med
+monthly,Post-reform,22,1.009,2.397,0.273,12.202
+monthly,Pre-reform,63,1.088,1.112,0.254,8.595
+weekly,Post-reform,74,0.869,1.004,0.176,5.951
+weekly,Pre-reform,208,0.818,0.905,0.115,6.004

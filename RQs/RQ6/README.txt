@@ -1,0 +1,1 @@
+RQ6 v2 package (NIFTY expiries only). Run order: rq6_main.py, rq6_extra.py, rq6_v2.py (threshold robustness, placebo-day direction/profile checks, era stability, Holm), rq6_figs.py, then pdflatex rq6_v2.tex. v2_era_vs_placebo.csv was computed from the era table with Fisher exact tests. The across-indices half is not tested (no other index data).

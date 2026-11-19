@@ -1,0 +1,5 @@
+alert,spec,n_alerts,adj_pairs,adj_pairs_null_mean,p_adj,win4,win4_null_mean,p_win
+L15R>3,primary (no replacement),65,11,12.1138,0.7184,56,55.006,0.4662
+L15R>3,sensitivity: with replacement,59,10,9.173,0.436,46,44.4434,0.4144
+EVR>2.7,primary (no replacement),20,1,1.171,0.7272,5,6.2512,0.7148
+EVR>2.7,sensitivity: with replacement,20,3,1.6526,0.2156,12,8.6522,0.1878
